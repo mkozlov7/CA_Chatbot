@@ -1,0 +1,1296 @@
+﻿Id,Name,Type,ReadKPIConditionMetadataId,ReadKPIForecastMetadataId,ReadKPITimeFrame,ReadKPIAggregationType,BusinessObjectType,CalculationKPIFormula,Description,HierarchyDistributionType,HierarchyAggregationType,DistributionKPIId,DisaggregateMonthly,RelevantPeriodStart,RelevantPeriodEnd,DataType
+25cbd492-9f69-4a3d-a064-01ba63bbcb83,kpi_other_baseline,0,e411ab86-406b-463c-840b-5942778151ab,,0,2,1,,,0,0,,FALSE,,,0
+f3490581-61d6-4c6a-8a36-024a3bece1c4,kpi_ACT_Volume_index,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    decimal denominator = Products.Sum(p => p.kpi_Baseline_Product_calc);
+
+    if (denominator != 0)
+    {
+        result = Products.Sum(p => p.kpi_sell_out_manually) / denominator * 100 - 100;
+    }
+}
+return result;",,0,0,,FALSE,,,0
+366c8e7e-a976-4f8a-b297-02f8e75a12f7,kpi_ACT_Sales_Margin,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_ActSalesMarginSKU);
+}
+return result;",,0,0,,FALSE,,,0
+f431191b-1e4c-4609-a3d2-037532517f2b,kpi_index,2,,,,,0,"decimal result;
+
+if ((decimal)kpi_baseline != 0)
+{
+    result = ( (decimal)kpi_promo_total_volume_plan /  (decimal)kpi_baseline) * 100 - 100;
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;",,0,0,,FALSE,,,0
+d0d4f40f-61f1-456b-9be0-03b2b08d3442,kpi_DoNotChangePrice,2,,,,,1,"decimal result = 0;
+
+// Перевіряємо умови
+if (kpi_DirectDiscountPerSKU == true && (kpi_Promo_price_proposal_manually == null || kpi_Promo_price_proposal_manually == 0))
+{
+    result = 1; // Якщо знижка увімкнена і ціна відсутня, повертаємо 1
+}
+else
+{
+    result = 0; // В іншому випадку повертаємо 0
+}
+
+return result;
+",,0,0,,FALSE,,,0
+a000ff52-c6c6-435c-b0db-04280079bee8,kpi_cf_Product_Brand,2,,,,,1," 
+var productBrand = Product.ProductInfo.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_Product_Brand"")?.Value?.ToString();
+
+if (productBrand == null)
+{
+    return ""-""; // Повертаємо значення за замовчуванням, якщо значення null
+}
+
+return productBrand;
+ ",,0,0,,FALSE,,,4
+8759c670-0030-4ff1-afcf-06975bbf4ac9,kpi_InOutGuideline,1,,,,,1,,,0,0,,FALSE,,,2
+8f256c85-1a85-46cd-8307-080c59cad3f4,kpi_SalesMargin_L9,2,,,,,1,"decimal result = 0;
+var grP = Activity.Products
+    .GroupBy(p => p.Product.ProductInfo.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_Product_Planning_Base_Label"")?.Value?.ToString())
+    .Select(g => new 
+    {
+        g.Key,
+        NetRevenueL9 = g.Average(p => p.kpi_Net_Revenue_L9),
+        BaselineSum = g.Sum(p => p.kpi_Baseline_Product_calc),
+        PromoUpliftSum = g.Sum(p => p.kpi_Promo_Uplift_KAM),
+        CogsPromo = g.Average(p => p.kpi_cogs_promo)
+    })
+    .ToList();
+var groupData = grP.FirstOrDefault(g => g.Key == Product.ProductInfo.CustomFields
+    .FirstOrDefault(cf => cf.Name == ""cf_Product_Planning_Base_Label"")?.Value?.ToString());
+if (groupData != null)
+    result = groupData.NetRevenueL9 - (groupData.BaselineSum + groupData.PromoUpliftSum) * groupData.CogsPromo;
+return result;",,0,2,,FALSE,,,0
+588585cf-59a6-4657-960f-08bbf5763dd4,kpi_WHS_Off_invoice,0,52fbf9e3-ba8f-4c68-95f0-d0e7f537f193,,0,2,1,,,0,0,,FALSE,,,0
+ca40e0a0-9e06-436b-9992-0baaa778d9f3,kpi_CombinationToRecommendInOutOfGuideline,1,,,,,1,,,2,0,,FALSE,,,2
+93c43aeb-867b-48f2-8e0a-0c3c17fbf0fa,kpi_InvestmentPromoSKU,2,,,,,1,"decimal result = 0;
+    result = kpi_VariablePromoSKU + kpi_FixedInvestment_KAM;
+return result;  ",,0,1,,FALSE,,,0
+a4620180-c52d-41da-baf9-0c770a638da0,kpi_A_transport_promo,2,,,,,0,"if (Products.Count() >0) {
+return	Products.Average(p => p.kpi_transport_promo);
+}
+return 0;",,0,0,,FALSE,,,0
+b18cf153-71f6-4921-9978-101b4f5bde67,kpi_SFA_MM_BW,2,,,,,0,return kpi_SFA_MM_promo-kpi_regular_baseline;,,0,0,,FALSE,,,0
+9f12f35f-9830-4935-8af7-104b25587d03,kpi_ACT_ROPI_price_shelf_BW,2,,,,,0,"return kpi_ACT_investment_total_promo != 0 
+    ? kpi_GCM_total_BW / kpi_ACT_investment_total_promo * 100 
+    : 0;
+",,0,0,,FALSE,,,0
+67514284-8e2d-4002-9013-10da455bf4e5,kpi_promo_total_volume_plan,2,,,,,0,"
+decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_PromoVolumePlanSKU);
+}
+return result;","auto-calculation is described in promo product KPI: Baseline + PromoUplift (automatically) from  Promo_Product_KPIs.	
+",0,0,,FALSE,,,0
+d785974a-6960-4d01-b270-134f924a66ef,kpi_ACT_GCM_total_promo,2,,,,,0,"return 
+//kpi_GCM_price_shelf_promo * kpi_promo_total_volume_fact   -  Products.Sum(p => p.kpi_kpi_fixed_investment);
+
+
+kpi_GCM_price_shelf_promo * (kpi_baseline + Products.Sum(p => p.kpi_Promo_Uplift_KAM))   - Products.Sum(p => p.kpi_kpi_fixed_investment);",,0,0,,FALSE,,,0
+722754d6-d4d1-4579-805a-152ecbba251d,kpi_UpliftCalc_SecPlace,0,ed5f6f42-b1d5-49f9-8afd-b8013a8008b1,,0,4,1,,,0,1,,FALSE,,,0
+8ffb345d-53f3-4fee-9020-1602a168d33c,kpi_ACTVariablePromoSKU,2,,,,,1,"decimal result = 0;
+    result = kpi_sell_out_manually * kpi_Promo_price_proposal_manually * (kpi_rebatePromoBonus/100);
+return result;",,0,1,,FALSE,,,0
+9282333e-6e27-4d7e-aa12-16c352764a52,kpi_SellIn,0,743e6654-00c0-41ff-b820-85fd68f97c5c,,0,0,1,,,0,1,,FALSE,,,0
+a498ac12-a385-4d9f-96b1-178f89fb82b7,kpi_SPL_price_automatically,0,536e1899-07cc-456a-ade9-36f9ad2dc0bd,,1,2,1,,,0,2,,FALSE,,,0
+15d56b03-bb8d-424f-8956-17d21e953a30,kpi_InOutOfGuidline,2,,,,,1,"if (Activity.cf_UnsavedNew is true)
+{
+return false;
+}
+return !kpi_InOutGuideline;",,0,4,,FALSE,,,2
+9aa4172e-2b1d-47d9-aa8e-186467196764,kpi_promotional_index,2,,,,,0,"decimal result;
+
+if ((decimal)kpi_regular_baseline != 0)
+{
+    result = ((decimal)kpi_promotional_promo	/ (decimal)kpi_regular_baseline ) *100;
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;",,0,0,,FALSE,,,0
+fa76dbc8-85ab-47ff-874a-1b5242d7d5ff,kpi_ProductCode,2,,,,,1,"var productCode = Product.ProductInfo?.Code;
+
+if (productCode == null)
+{
+    return ""-""; // Return default value if productCode is null
+}
+
+return productCode;
+",,0,0,,FALSE,,,4
+cb89a801-43d1-4132-9b61-1bcc7fa8637c,kpi_A_WHS_Off_invoice,2,,,,,0,"if (Products.Count()>0){
+return	Products.Average(p => p.kpi_WHS_Off_invoice);
+}
+return 0;",,0,0,,FALSE,,,0
+893c36fc-b5e0-45c5-b4c0-1c56309ad1ec,kpi_variable_promo,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_VariablePromoSKU);
+}
+return result;",,0,0,,FALSE,,,0
+ec19abbe-3571-4308-ad84-1cd05a59ed16,kpi_NetRevenueSKU,2,,,,,1,"decimal result = 0;
+result = (kpi_Baseline_Product_calc + kpi_Promo_Uplift_KAM) * 
+             (kpi_Promo_price_proposal_manually * (1 - kpi_rebatePromoBonus / 100)) - 
+             kpi_FixedInvestment_KAM;
+return result;",,0,1,,FALSE,,,0
+8dfc3e94-ba11-46db-90d1-1ea3fb972d98,kpi_Sales_Margin,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_SalesMarginSKU);
+}
+return result;
+
+",,0,0,,FALSE,,,0
+296ee2ff-d503-44bf-88aa-1f2bb7d579c5,kpi_skuShareKpiEdit,1,,,,,2,,,0,1,,FALSE,,,0
+9764bceb-8e51-41e2-a9fa-1f8f3653297c,kpi_SalesMarginSKU,2,,,,,1,"decimal result = 0;
+result = kpi_NetRevenueSKU - (kpi_Baseline_Product_calc + kpi_Promo_Uplift_KAM) * kpi_cogs_promo;
+return result;",,0,1,,FALSE,,,0
+b095b056-37f0-45e4-82bc-2228eacb78f5,kpi_FiFOdaysFoActSales_SelIn,1,,,,,1,,,0,0,,FALSE,,,1
+d962b723-d73e-4ec1-8aa7-22b27707c211,kpi_Manual_Adjustment_VBB,1,,,,,2,,,3,1,296ee2ff-d503-44bf-88aa-1f2bb7d579c5,FALSE,,,0
+d168682b-559a-4313-8848-23b34dfac62f,kpi_ProductStatusMovementApproval,2,,,,,1,"if ( kpi_Promo_price_proposal_manually < kpi_Min_Budgeted_Promo_price ) {
+return 0;} else {return 1;}
+ 
+",,0,0,,FALSE,,,1
+efb94b12-b97b-4a50-a331-26a80b445535,kpi_InOutGuideline_header,2,,,,,0,return 	 Products.Count == Products.Count(p => p.kpi_InOutGuideline == true) ? 1 : 0; ;,,0,0,,FALSE,,,0
+717818f5-d64f-4ed7-9d3e-2716fc96e277,kpi_GCMBaselineSKU,2,,,,,1,"decimal result = 0;
+
+result = kpi_Baseline_Product_calc * 
+         (
+            (
+                kpi_Listing_customer_price_automatically -
+                (kpi_Listing_customer_price_automatically * kpi_rebatePromoBonus / 100) -
+                kpi_cogs_promo
+            ) - 
+            kpi_other_promo - 
+            kpi_transport_promo - 
+            kpi_WHS_promo
+         );
+
+return result;
+",,0,1,,FALSE,,,0
+60fb6bdb-926d-4485-9447-27527a420ddc,kpi_Copy_Text,1,,,,,1,,,2,0,,FALSE,,,4
+7daf5436-18cb-47a4-8510-2b9eabd2b953,kpi_CodeOfMaterialPricingGroup,2,,,,,1,"var Material_Group_Label= Product.ProductInfo.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_Material_Group_Label"")?.Value?.ToString();
+
+if (Material_Group_Label== null)
+{
+    return ""-""; // Повертаємо значення за замовчуванням, якщо значення null
+}
+
+return Material_Group_Label;",,0,0,,FALSE,,,4
+c0cec776-1d4f-4892-963d-2ced043c10f0,kpi_ACT_GCM_total_shelf_index,2,,,,,0,"decimal result;
+
+if ((decimal)kpi_GCM_total_shelf_baseline != 0)
+{
+    result = ((decimal)kpi_ACT_GCM_total_shelf_promo  / (decimal)kpi_GCM_total_shelf_baseline)*100;
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;",,0,0,,FALSE,,,0
+7983cf55-158d-4a0e-9ac0-2ced594a5c8f,kpi_highlightInOutOfGuidlineAgregate,2,,,,,1,"
+if (Activity.cf_UnsavedNew is true)
+{
+    return false; // Повертаємо 1, якщо Activity.cf_UnsavedNew дорівнює true
+}
+
+// Перевіряємо KPI для кожного продукту
+if (!kpi_mostFrequentPromoShelfPriceGuideline ||  
+    !kpi_PromotionalTypeCheckGuideline ||  
+    !kpi_CombinationToAvoidInOutOfGuideline) 
+{
+    return true; // Якщо хоча б один KPI дорівнює false, повертаємо 1
+}
+
+return false; // Якщо всі KPI дорівнюють true, повертаємо 0",,0,3,,FALSE,,,2
+c4e36867-68c0-43ef-9b6f-2d3c339fa08e,kpi_Main_Forecast_VBB,2,,,,,2,"var isGroup1 = ClientDetails.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_IsGroup1"")?.Value;
+var period = ObjectSpace.GetObjectByKey<Period>(RelatedPeriodId);
+
+if ((isGroup1 != null && (bool)isGroup1 == true) || period.EndDate.Date < DateTime.Now.Date)  
+{  
+    return kpi_ForecastPromoVolume + kpi_ForecastBaseline + kpi_Manual_Adjustment_VBB + kpi_Forward_Buy;  
+}  
+else  
+{  
+    return kpi_ForecastUnfoldedBaseline + kpi_Manual_Adjustment_VBB + kpi_Forward_Buy;  
+}",,0,1,,FALSE,,,0
+80f77dd0-8b9f-47be-9469-2e47fa9970b1,kpi_Promo_Volume_Short,2,,b7a89f8d-24c9-4fdf-858e-9f99eb8b42be,,,1,"return new[] {""📝 Draft"", ""❌ Canceled"", ""🚫 Not Approved""}.Contains(Activity.State.Name.ToString()) ? 0 : kpi_Promo_Uplift_KAM;",,0,1,,TRUE,ShipmentStartDate,ShipmentEndDate,0
+0f673ae7-31fb-49c7-ade3-2eaca5468ddf,kpi_frcGrothRate,0,665574e6-8bde-47c5-ae35-30a5ac8a0b6c,,,,2,,,0,1,,FALSE,,,0
+0d0a32c8-3815-409f-989f-30dbfb90077c,kpi_PromoPriceManuallyAdjVsMinBugetedPromoPrice,2,,,,,1,"decimal result = 0;
+result = kpi_Promo_price_proposal_manually - kpi_Min_Budgeted_Promo_price;
+return result;",,0,1,,FALSE,,,0
+3cebe90d-6113-4d6d-83e6-32abbd567d45,kpi_ActGrossMarginSKU,2,,,,,1,"decimal result = 0;
+result = (decimal) (kpi_ActSalesMarginSKU - (kpi_sell_out_manually * (kpi_transport_promo+kpi_other_promo+kpi_WHS_promo)));
+return result;",,0,1,,FALSE,,,0
+818b7e72-54ac-4338-9187-33bc0bd9fb86,kpi_promotional_BW,2,,,,,0,return kpi_promotional_promo	- kpi_regular_baseline;,,0,0,,FALSE,,,0
+f0ddcdf4-9887-415e-aff6-3527c2410ba4,kpi_GCM_price_shelf_promo,2,,,,,0,"return kpi_Min_Budgeted_Promo_price_total *(1-kpi_A_kpi_rebatePromoBonus /100) -kpi_A_cogs_promo
+-kpi_A_other_promo -kpi_A_transport_promo - kpi_A_WHS_promo ;
+",,0,0,,FALSE,,,0
+850e96db-5269-4a0e-9c63-355e985b1ab8,kpi_Shelf_price,1,,,,,1,,"Візуальна поведінка KPI налаштовується через три логічні KPI з відповідними пріоритетами:
+
+kpi_shelfPriceVisualState – пріоритет 1
+Якщо true → kpi_Shelf_price буде задізейблений та підсвічений червоним
+Якщо false → переходимо до наступного правила
+
+kpi_disableKpiEditing – пріоритет 2
+Якщо true → kpi_Shelf_price буде задізейблений без підсвітки
+Якщо false → переходимо до наступного правила
+
+kpi_highlightMostFrequentPromoShelfPriceGuideline – пріоритет 3
+Якщо true → kpi_Shelf_price буде підсвічений червоним, але доступний для редагування
+Якщо false → KPI відображається без змін",2,2,,FALSE,,,0
+1a99aca0-3ab6-4838-9cce-3589b09e7d5b,kpi_GRPs,1,,,,,0,,,0,0,,FALSE,,,0
+3c53b5d3-1ab5-4144-8e29-36197ef1fb71,kpi_ACT_kpi_variable_promo,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_ACTVariablePromoSKU);
+}
+return result;
+",,0,0,,FALSE,,,0
+e1345602-d821-4a52-9193-3dfeecd956ec,kpi_ForecastUnfoldedBaseline,2,,,,,2,"var isGroup1 = ClientDetails.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_IsGroup1"")?.Value;
+var period = ObjectSpace.GetObjectByKey<Period>(RelatedPeriodId);
+
+if ((isGroup1 != null && (bool)isGroup1 == true) ||  period.EndDate.Date < DateTime.Now.Date)  
+{  
+    return 0;  
+}  
+else  
+{  
+    return kpi_UnfoldedBaseline + kpi_ForecastBaseline;  
+}",,0,1,,FALSE,,,0
+cf9980bf-b56f-4b1e-8d03-3e6d253a52be,kpi_investment_total_promo,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_InvestmentPromoSKU);
+}
+return result;",,0,0,,FALSE,,,0
+f4bff778-2e52-4a39-9c17-3eb70e8105cb,kpi_promoPriceProposalManuallyVisualState,2,,,,,1,"bool isDisabled = Activity.cf_DisableKpiPromo == true;
+bool isHighlighted = false;
+
+var kpiValues = new Dictionary<Guid, bool>
+{
+    { Guid.Parse(""47C747D8-BA01-432A-A320-B6F7DD7D0633""), true },
+    { Guid.Parse(""7013AF5D-F824-4636-AB3E-042168874629""), true },
+    { Guid.Parse(""3E66F51F-C580-4B7F-8176-8AD2B4B246A9""), true },
+    { Guid.Parse(""298B9B43-A604-4DBD-898E-8D0BC78C675C""), true },
+    { Guid.Parse(""7A9B624D-67C1-4542-B46B-8ED69273464D""), true },
+    { Guid.Parse(""04563662-0556-441F-8E80-A74E595C7097""), true },
+    { Guid.Parse(""4AD51074-B227-4AFD-9092-AC37A7D18852""), true },
+    { Guid.Parse(""78041807-4A08-4C31-884E-FE3BDCFDEA45""), true }
+};
+
+if (kpi_ExistingProduct == true && kpiValues.TryGetValue(Activity.MechanicId, out var kpiValue))
+{
+    isHighlighted = kpi_Promo_price_proposal_manually == 0 || 
+                    kpi_Promo_price_proposal_manually < kpi_Min_Budgeted_Promo_price;
+}
+
+return isDisabled && isHighlighted;",,0,3,,FALSE,,,2
+b6377cbb-6bb7-40f6-9690-3f04888df25a,kpi_ACT_Gross_Margin,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_ActGrossMarginSKU);
+}
+return result;",,0,0,,FALSE,,,0
+b7786c29-4c8e-4875-acef-40ab4e9b2849,kpi_PlannedBudget,1,,,,,0,,,0,0,,FALSE,,,0
+b9c7eaf7-a9ce-4d9e-9b73-43cf23edc028,kpi_ForecastPromoVolume,2,,,,,2,"var isGroup1 = ClientDetails.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_IsGroup1"")?.Value;
+var period = ObjectSpace.GetObjectByKey<Period>(RelatedPeriodId);
+ 
+if (period.EndDate.Date < DateTime.Now.Date)
+{
+    return kpi_frcPromoVolumePast > 0 ? kpi_frcPromoVolumePast : 0;
+}
+else if (isGroup1 != null && (bool)isGroup1 == true && period.StartDate.Date > DateTime.Now.AddMonths(2).Date)
+{
+    return kpi_GrowthRate_tech * kpi_NumberOfPromotionsVBB;
+}
+else
+{
+    return kpi_frcPromoVolumeShort;
+}","Code before 23.07.2025 (past values taken directly from Promotion):
+var isGroup1 = ClientDetails.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_IsGroup1"")?.Value;
+var period = ObjectSpace.GetObjectByKey<Period>(RelatedPeriodId);
+
+if (period.EndDate.Date < DateTime.Now.Date)  
+{  
+    return kpi_frcPromoVolumePast;  
+}  
+else if (isGroup1 != null && (bool)isGroup1 == true && period.StartDate.Date > DateTime.Now.AddMonths(2).Date) 
+{  
+    return kpi_GrowthRate_tech * kpi_NumberOfPromotionsVBB;  
+}
+else
+{
+    return kpi_frcPromoVolumeShort;
+}
+",0,1,,FALSE,,,0
+4e33c67c-2672-40b9-854d-441f2b0ae5f4,kpi_selectedGuideline,1,,,,,1,,,0,0,,FALSE,,,4
+f3e36af5-afb2-4278-acd5-44c00d319cc5,kpi_SellIn_calc,2,,,,,1,return kpi_sell_In_manually;,,0,1,,FALSE,,,0
+dae382bc-79f0-46c7-8f11-4a586ab10f0a,kpi_Color_Mechanic,2,,,,,1,"var mechanicId = Activity.MechanicId;
+
+var kpiValues = new Dictionary<Guid, bool>
+{
+    { Guid.Parse(""47C747D8-BA01-432A-A320-B6F7DD7D0633""), true },
+    { Guid.Parse(""7013AF5D-F824-4636-AB3E-042168874629""), true },
+    { Guid.Parse(""3E66F51F-C580-4B7F-8176-8AD2B4B246A9""), true },
+    { Guid.Parse(""298B9B43-A604-4DBD-898E-8D0BC78C675C""), true },
+    { Guid.Parse(""7A9B624D-67C1-4542-B46B-8ED69273464D""), true },
+    { Guid.Parse(""04563662-0556-441F-8E80-A74E595C7097""), true },
+    { Guid.Parse(""4AD51074-B227-4AFD-9092-AC37A7D18852""), true },
+    { Guid.Parse(""78041807-4A08-4C31-884E-FE3BDCFDEA45""), true }
+};
+
+// Перевіряємо, чи mechanicId є в kpiValues
+if (kpiValues.TryGetValue(mechanicId, out var kpiValue))
+{
+    // Якщо kpi_Promo_price_proposal_manually == 0 АБО менше за kpi_Min_Budgeted_Promo_price → true
+    return kpi_Promo_price_proposal_manually == 0 || 
+           (kpi_Promo_price_proposal_manually < kpi_Min_Budgeted_Promo_price);
+}
+
+// Якщо mechanicId немає в kpiValues → false
+return false;",,0,4,,FALSE,,,2
+ae1bc6fc-b99a-4619-9d5e-4a7e3e53b595,kpi_BaselineVBB,0,f730c85f-64a8-4dd8-9922-b3fac4ee8f4d,,,,2,,,0,1,,FALSE,,,0
+4b6e050e-25ce-44ba-8881-4b674f4651a8,kpi_FiFOdaysFoActSales_SelOut,1,,,,,1,,,0,0,,FALSE,,,1
+e8eed1ab-bb5f-4fdc-81ce-4caad029b9a9,kpi_SMM_SFA_MM_baseline,2,,,,,0,"return
+kpi_regular_baseline *(1-kpi_A_kpi_rebatePromoBonus/100) - kpi_A_cogs_promo
+;",,0,0,,FALSE,,,0
+4d11f32f-ea31-4b05-918a-4fafcbca9d8d,kpi_ACTVolumeIndexSKU,2,,,,,1,"decimal result = 0;
+
+if (kpi_Baseline_Product_calc != 0)
+{
+    result = (kpi_sell_out_manually / kpi_Baseline_Product_calc) * 100 - 100;
+}
+else
+{
+    result = 0;
+}
+
+return result;",,0,0,,FALSE,,,0
+ff4ec5ee-2ca4-4f51-8201-50262301669f,kpi_UpliftCalc_EDLP,0,6af44961-99df-4bb5-9c56-7ac357ed9525,,0,4,1,,,0,1,,FALSE,,,0
+bfb41446-91b3-45c0-839f-50c278b1ad45,kpi_Actual_Volume,1,,,,,0,,,0,0,,FALSE,,,0
+9e34452a-1db3-47cf-804e-514e84a170b8,kpi_frcFactNumberOfPromo,2,,080571f2-5016-457a-838e-c714bfb739d0,,,1,"var s=new DateTime(Activity.ShipmentStartDate.Year,Activity.ShipmentStartDate.Month,1);
+var e=new DateTime(Activity.ShipmentEndDate.Year,Activity.ShipmentEndDate.Month,DateTime.DaysInMonth(Activity.ShipmentEndDate.Year,Activity.ShipmentEndDate.Month));
+var d=DateTime.Now;
+var f=new DateTime(d.Year,d.Month,1);
+var m=f.AddMonths(2);
+var l=new DateTime(m.Year,m.Month,DateTime.DaysInMonth(m.Year,m.Month));
+var id=Activity.State.Id;
+if(Activity.ShipmentEndDate.Date<f)
+{
+if(
+id==Guid.Parse(""9CA8D0BD-6AE8-48B3-8159-812584792B92"")||
+id==Guid.Parse(""F13A0C48-B64A-4514-ADD1-E7C8C51B2C4B"")||
+id==Guid.Parse(""7445ED05-1312-4375-838D-36DFC570EB7E"")
+)
+{
+return(e-s).Days+1;
+}
+else
+{
+return 0;
+}
+}
+else if(Activity.ShipmentEndDate.Date>=f&&Activity.ShipmentEndDate.Date<=l)
+{
+if(
+id==Guid.Parse(""7445ED05-1312-4375-838D-36DFC570EB7E"")||
+id==Guid.Parse(""B68C1C7C-BC4A-4F24-B1B2-E8F11EE15995"")||
+id==Guid.Parse(""0029FC71-08E9-4981-A795-F64A7E28DAF1"")||
+id==Guid.Parse(""ECE80A75-9A82-4C6C-A581-C36070AC0521"")||
+id==Guid.Parse(""D03E181B-0D7C-4149-8DCE-3E7F0C8ECBD5"")
+)
+{
+return(e-s).Days+1;
+}
+else
+{
+return 0;
+}
+}
+else if(Activity.ShipmentEndDate.Date>l)
+{
+if(
+id==Guid.Parse(""7445ED05-1312-4375-838D-36DFC570EB7E"")||
+id==Guid.Parse(""B68C1C7C-BC4A-4F24-B1B2-E8F11EE15995"")||
+id==Guid.Parse(""0029FC71-08E9-4981-A795-F64A7E28DAF1"")||
+id==Guid.Parse(""ECE80A75-9A82-4C6C-A581-C36070AC0521"")||
+id==Guid.Parse(""D03E181B-0D7C-4149-8DCE-3E7F0C8ECBD5"")
+)
+	{
+		return(e-s).Days+1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+return 0;
+",,0,0,,TRUE,cf_NumberOfPromoStartDate,cf_NumberOfPromoEndDate,0
+0a4fc7e8-dc10-4f28-b14f-5367f0133554,kpi_ACTInvestmentTotalPromoSKU,2,,,,,1,"decimal result = 0;
+    result = kpi_ACTVariablePromoSKU + kpi_FixedInvestment_KAM;
+return result;",,0,1,,FALSE,,,0
+dadb56b1-47d9-4115-a591-551461affb60,kpi_GCMPlanBtl,2,,,,,1,"decimal result = 0;
+result = kpi_NetRevenueBtl - (kpi_cogs_promo + kpi_other_promo + kpi_transport_promo + kpi_WHS_promo);
+return result;",,0,1,,FALSE,,,0
+bacb4557-e12b-4d01-b1d8-556267843f19,kpi_promotional_promo,2,,,,,0,"
+ if (Products.Count() != 0 ){
+
+return	Products.Average(p => p.kpi_Promo_price_proposal_manually
+);
+
+}
+else{
+return 0;
+}",,0,0,,FALSE,,,0
+d2e299a7-0781-4151-b224-574faf19a6e1,kpi_new,1,,,,,0,,,0,0,,FALSE,,,0
+e8fd4c44-51d7-453e-9fc7-579640e8d8ce,kpi_Copy_LIst,1,,,,,1,,,2,0,,FALSE,,,3
+e33d2d2a-b5be-4f2a-b61f-57e1abc7d300,kpi_PromoVolumePlanSKU,2,,,,,1,"decimal result = 0;
+    result = kpi_Baseline_Product_calc + kpi_Promo_Uplift_KAM;
+return result;",,0,1,,FALSE,,,0
+f00be0a2-82d5-47ec-ba59-580dfcd44cd8,kpi_ACT_Volume_BW,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_ActVolumeBWSKU);
+}
+return result;",,0,0,,FALSE,,,0
+8b4ab946-7ade-4e1f-a579-5cd10d835180,kpi_Promo_price_proposal_manually,1,,,,,1,,,2,2,,FALSE,,,0
+a82949ad-3124-4177-ab2f-5d0b88114357,kpi_Guideline_KPI,1,,,,,1,,,2,2,,FALSE,,,0
+1b1204f0-3f58-45e4-be73-5d78c44ef2cc,kpi_WHS_baseline,0,e8e5677b-1f8c-408d-9dfd-645b8ec571c6,,0,2,1,,,0,0,,FALSE,,,0
+43e94bab-459a-48b4-81b6-62946a60e354,kpi_Highlight_Zero_And_EnabledPProposalManually,2,,,,,1,"bool isZero = kpi_Promo_price_proposal_manually == 0;
+bool isDisabled = Activity.cf_DisableKpiPromo == true;
+
+return isZero && !isDisabled;
+",,0,3,,FALSE,,,2
+c6921fb1-ce72-4b84-819c-62cbf4637a7a,kpi_GCM_promo_price_promo,2,,,,,0,"return 
+kpi_promotional_promo *(1-kpi_A_kpi_rebatePromoBonus/100)-kpi_A_cogs_promo-kpi_A_other_promo -kpi_A_transport_promo - kpi_A_WHS_promo;
+",,0,0,,FALSE,,,0
+70a5a583-2f2e-462e-8bcb-6314306a4a19,kpi_ForecastBaseline,2,,,,,2,"var period = ObjectSpace.GetObjectByKey<Period>(RelatedPeriodId);
+
+if (period.EndDate.Date < DateTime.Now.Date)  
+{  
+    return kpi_BaselineVBB;  
+}  
+else  
+{  
+    return kpi_BaselineVBB; 
+}","change before 23.07.2025 (Baseline for past period previously taken from actual sales calculated by Procedure (S.Zamler):
+var period = ObjectSpace.GetObjectByKey<Period>(RelatedPeriodId);
+
+if (period.EndDate.Date < DateTime.Now.Date)  
+{  
+    return kpi_frcSKUSalesAsShare;  
+}  
+else  
+{  
+    return kpi_BaselineVBB; 
+}",0,1,,FALSE,,,0
+8c46c348-d156-4074-b6c0-64b621c1c08b,kpi_ACT_Net_Revenue,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_ActNetRevenueSKU);
+}
+return result;", ,0,0,,FALSE,,,0
+d96ad067-bf8a-46ac-a2eb-65ad65d48aac,kpi_DisplayCombinationToRecommendGuideline,2,,,,,1,return 0;,,0,3,,FALSE,,,0
+e364fcdb-c3dd-41e5-9999-678371ea3315,kpi_ACT_investment_total_promo,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_ACTInvestmentTotalPromoSKU);
+      // result = kpi_ACT_kpi_variable_promo + Products.Sum(p => p.kpi_FixedInvestment_KAM);
+}
+return result;",,0,0,,FALSE,,,0
+bfdb0ed0-268b-46aa-a8ad-67991c288793,kpi_UpliftCalc_Leaflet,0,1d73f32e-0c0d-4e4c-87b5-ace126f6e73a,,0,4,1,,,0,1,,FALSE,,,0
+600e2731-c2b5-4022-8368-6b48c1d0b4c4,kpi_Discount_SPL,2,,,,,1,"decimal result;
+
+if ((decimal)kpi_SPL_price_automatically != 0)
+{
+    result =  (1-  (decimal)kpi_Promo_price_proposal_manually /  (decimal)kpi_SPL_price_automatically ) *100;
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;",,0,2,,FALSE,,,0
+c36f5330-3b79-4e1e-a85d-6b7a7a5bc3ec,kpi_Min_Budgeted_Promo_price_total,2,,,,,0,"if (Products.Count() != 0 ){
+
+return  Products.Average(p => p.kpi_Min_Budgeted_Promo_price
+);
+
+}
+else{
+return 0;
+}",,0,0,,FALSE,,,0
+4a9522a7-0082-4bbc-867e-6c605024af92,kpi_ProductVAT,0,028005ad-3c49-490f-9bca-55d1d01d16c6,,1,3,1,,,0,0,,FALSE,,,0
+40619500-6509-43cd-b33a-6cd0e9b5c785,kpi_ShipmentDate,0,0ad97e30-8ace-4426-a43e-21ec6648e2c8,,1,2,1,,,0,0,,FALSE,,,0
+7bcdfeb7-73c3-4905-aaec-6dcd0eb333c7,kpi_A_cogs_promo,2,,,,,0,"  if (Products.Count()>0){
+return	Products.Average(p => p.kpi_cogs_promo);
+}
+return 0;",,0,0,,FALSE,,,0
+c767e784-fcab-4a79-be6e-6dd924f6df83,kpi_SKUPenetrationByPromotion,1,,,,,2,,,0,0,,FALSE,,,0
+510b67f3-9dbf-432a-80e9-6e3c296e935f,kpi_frcPromoVolumePast,0,ccc3f49f-1cb8-4ff2-bf74-cc5b3a8fef5c,,,,2,,,0,1,,FALSE,,,0
+e8b48be5-eaaa-47e2-89ee-6e7ae2b0aea6,kpi_Promo_Uplift_KAM_Intermediate_2,1,,,,,1,,,0,1,,FALSE,,,0
+6d098f13-28d5-4db8-b099-6ef4968cab93,kpi_GCM_total_shelf_promo,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_GCMShelfPromoSKU);
+}
+return result;",,0,0,,FALSE,,,0
+7495b887-d611-4bf5-bd38-7015eaed3fbf,kpi_factNumberOfPromo,2,,,,,2,"var period = ObjectSpace.GetObjectByKey<Period>(RelatedPeriodId);
+
+if (period == null)
+    return 0;
+
+var daysInMonth = DateTime.DaysInMonth(period.StartDate.Year, period.StartDate.Month);
+
+if (daysInMonth == 0)
+    return 0;
+
+return kpi_factNumberOfPromoRead / daysInMonth;
+",,0,0,,FALSE,,,0
+82bdafa3-8fb9-43d9-8436-7033710fe559,kpi_WHS_promo,0,9dc3917f-5026-44d7-9623-c207c7e5b480,,0,2,1,,,0,0,,FALSE,,,0
+61647ec0-364c-4d66-9bd4-70398a7b395d,kpi_TextTstGuideline,1,,,,,1,,,0,0,,FALSE,,,4
+a1176b3e-dba4-466d-8b0e-7117ba6c8c11,kpi_ACT_ROPI_promo_price_BW,2,,,,,0,"decimal result;
+
+if ((decimal)kpi_ACT_investment_total_promo != 0)
+{
+   // result =  ((decimal)kpi_ACT_GCM_total_BW /(decimal)kpi_ACT_investment_total_promo )*100;
+result =  ((decimal)kpi_ACT_GCM_total_BW /(decimal)kpi_ACT_investment_total_promo )*100;
+
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;",,0,0,,FALSE,,,0
+4825a06c-9f2a-4c31-b221-72dcfc18dded,kpi_NetRevenueBtl,2,,,,,1,"decimal result = 0;
+if (kpi_TotalPlanVolumePromotion == 0)
+{
+   result = (decimal)kpi_Promo_price_proposal_manually * (1 - kpi_rebatePromoBonus / 100) 
+         - (kpi_FixedInvestment_KAM);
+}
+else
+{
+result = (decimal)kpi_Promo_price_proposal_manually * (1 - kpi_rebatePromoBonus / 100) 
+         - (kpi_FixedInvestment_KAM / kpi_TotalPlanVolumePromotion);
+}
+return result;",,0,1,,FALSE,,,0
+0b52c7e3-8602-42dd-a14d-7324ac6e34fe,kpi_DirectDiscountPerSKU,1,,,,,1,,,2,0,,FALSE,,,2
+5e5a5f93-c15b-4044-8b0a-73e69b0e328b,kpi_A_rebateBaseline,2,,,,,0,"  if (Products.Count()>0){
+return	Products.Average(p => p.kpi_rebateBaseline );
+}
+return 0;",,0,0,,FALSE,,,0
+7de15a97-620c-4712-8f11-74335e90df80,kpi_ACT_GCM_total_shelf_promo,2,,,,,0,"
+return 
+//kpi_GCM_price_shelf_promo * kpi_promo_total_volume_fact -Products.Sum(p => p.kpi_kpi_fixed_investment);
+kpi_GCM_price_shelf_promo * kpi_promo_total_volume_fact - kpi_Fixed_Investment_header ; ",,0,0,,FALSE,,,0
+a3376192-e5a5-4bf9-8eee-745a1b1d267b,kpi_ROPI_promo_price_BW,2,,,,,0,"decimal result;
+
+if ((decimal)kpi_investment_total_promo != 0)
+{
+    result =  ((decimal)kpi_GCM_total_BW /(decimal)kpi_investment_total_promo )*100;
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;",,0,0,,FALSE,,,0
+d6a34985-13d3-499e-9993-75d81dbc5aa3,kpi_GCM_promo_price_baseline,2,,,,,0,"return kpi_SMM_SFA_MM_baseline-kpi_A_other_promo-kpi_A_transport_promo-kpi_A_WHS_promo
+;",,0,0,,FALSE,,,0
+9b04d574-23e9-4f78-b906-76a3d0895d1a,kpi_Baseline_Product,0,ccebb45d-846b-4e46-85c3-80c4c2722236,,2,0,1,,,0,1,,FALSE,,,0
+208b6a13-d70a-4764-aac8-772a2470dc22,kpi_highlightPromotionalTypeCheckGuideline,2,,,,,1,"if (Activity.cf_UnsavedNew is true)
+{
+    return false;
+}
+
+if (kpi_ExistingProduct == false)
+{
+    return false;
+}
+return !kpi_PromotionalTypeCheckGuideline;",,0,3,,FALSE,,,2
+43e71edb-0f49-413e-bce0-77f6a307840b,kpi_SKUSAPCode,2,,,,,1,"if (Activity.cf_SAP_INDENTIFICATION == 1)
+{
+    // Повертаємо значення cf_SAP_SKU_Code1 для продукту
+    var result = Product.ProductInfo.CustomFields
+        .FirstOrDefault(cf => cf.Name == ""cf_SAP_SKU_Code2"")?.Value;
+
+    return result != null ? result.ToString() : string.Empty; // Повертаємо рядок або порожній рядок, якщо результат null
+}
+else if (Activity.cf_SAP_INDENTIFICATION == 2)
+{
+    // Повертаємо значення cf_SAP_SKU_Code2 для продукту
+    var result = Product.ProductInfo.CustomFields
+        .FirstOrDefault(cf => cf.Name == ""cf_SAP_SKU_Code1"")?.Value;
+
+    return result != null ? result.ToString() : string.Empty; // Повертаємо рядок або порожній рядок, якщо результат null
+}
+else
+{
+    // У разі, якщо cf_SAP_INDENTIFICATION має некоректне значення
+    return string.Empty; // Повертаємо порожній рядок
+}
+",,0,0,,FALSE,,,4
+d06fb36d-522a-4bcf-b231-7a3cdef71366,kpi_FixedInvestment_KAM,1,,,,,1,,,3,1,ad8443ec-9e0a-44fe-96a8-cc3cc656ee59,FALSE,,,0
+d0e5efbb-e851-4456-89bd-7a8fb6df8bcd,kpi_ShelfDummy,2,,,,,1,"decimal result = 0;
+decimal denominator = kpi_ProductVAT == null ? 1 : 1 + kpi_ProductVAT / 100;
+        if (denominator != 0)
+        {
+            result = (decimal) kpi_Shelf_price / denominator;
+        }
+return result;",,0,2,,FALSE,,,0
+85d7868e-b993-44e1-9c1d-7c0cdbe28ceb,kpi_GCM_promo_price_BW,2,,,,,0,return kpi_GCM_promo_price_promo - kpi_GCM_promo_price_baseline;,,0,0,,FALSE,,,0
+52201938-46dd-4672-9776-7c42ab1c5e04,kpi_Discount_customer_price,2,,,,,1,"
+decimal result;
+
+if ((decimal)kpi_Listing_customer_price_automatically != 0)
+{
+    result =  (1- (decimal)kpi_Promo_price_proposal_manually / (decimal)kpi_Listing_customer_price_automatically)  * 100;
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;
+ ",,0,2,,FALSE,,,0
+c2620d76-5d46-4259-8256-7d07ecede44c,kpi_PromoPriceManuallyAdjVsMinBugetedPromoPricePct,2,,,,,1,"decimal result = 0;
+if (kpi_Min_Budgeted_Promo_price == 0)
+{
+    result = 0;
+}
+else
+{
+result = kpi_PromoPriceManuallyAdjVsMinBugetedPromoPrice/kpi_Min_Budgeted_Promo_price*100;
+}
+return result;",,0,2,,FALSE,,,0
+22d33f9b-0aba-4c19-80b9-7df23ba6e9fc,kpi_A_kpi_rebatePromoBonus,2,,,,,0," if (Products.Count()>0){
+return	Products.Average(p => p.kpi_rebatePromoBonus);
+}
+return 0;",,0,0,,FALSE,,,0
+a70d86ef-c4e6-4e1d-be76-7f194507471e,kpi_GCM_total_shelf_baseline,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_GCMShelfBaselineSKU);
+}
+return result;",,0,0,,FALSE,,,0
+126c290c-f2aa-4d3f-a77a-7f89dd0485fb,kpi_ROPI_ActivityProducts,2,,,,,1,"decimal result = 0;
+decimal denominator = kpi_FixedInvestment_KAM + (kpi_TotalPlanVolumePromotion * (kpi_Listing_customer_price_automatically - kpi_Promo_price_proposal_manually)*(1 - kpi_rebatePromoBonus / 100));
+
+// Перевіряємо, чи знаменник не дорівнює 0
+if (denominator != 0)
+{
+    result = (decimal) ((kpi_GCMPlanBtl * kpi_TotalPlanVolumePromotion) 
+             - (kpi_Baseline_Product_calc * 
+                (kpi_Listing_customer_price_automatically * (1 - kpi_rebatePromoBonus / 100)
+                - (kpi_cogs_promo + kpi_other_promo + kpi_transport_promo + kpi_WHS_promo))))   * 100    / denominator;
+}
+
+return result;
+
+",,0,2,,FALSE,,,0
+1629b31a-63bb-49f5-9236-80a97b74838c,kpi_promo_total_volume_fact,2,,,,,0,"if (Products.Count() != 0 ){
+
+return   (decimal) Products.Sum(p => p.kpi_sell_out_manually) ;
+
+}
+else{
+return 0;
+}","111",0,0,,FALSE,,,0
+4ce869de-ccca-4eec-96e6-8725ce074c06,kpi_ExtraPromoPc,1,,,,,1,,,2,2,,FALSE,,,0
+f61bf356-0257-4ced-8328-873bcc0dfdd6,kpi_sell_out_manually,1,,,,,1,,,3,1,b45c13b3-41c1-4737-83c8-a9ba29a4d574,FALSE,,,0
+bf3cd3e4-7505-44fb-9144-87d507324e76,kpi_Promo_Uplift_automatically,0,69142483-c11c-4ffa-9fd0-3af56dcca9c8,,0,0,1,,KPI старий. Не використовується. Замість нього kpi_UpliftCalc_Mechanic (Promo objem Calc - návrh (ks)),0,1,,FALSE,,,0
+e0415bb7-bca1-48b0-898f-883aa9648eda,kpi_Promo_Uplift_KAM_Intermediate,2,,,,,1,"decimal result = 0;
+var groupedProductsWithZeroSum = Activity.Products
+    .Where(p => p.kpi_UpliftCalc_Mechanic != null)
+    .GroupBy(p => p.Product.ProductInfo.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_Product_Planning_Base_Label"")?.Value?.ToString())
+    .Select(group => new 
+    {
+        GroupKey = group.Key,        Products = group.ToList(),
+        SumUpliftCalcMechanic = group.Sum(p => p.kpi_UpliftCalc_Mechanic)
+    })
+    .Where(group => group.SumUpliftCalcMechanic == 0)
+    .Select(group => group.GroupKey) // Зберігаємо лише ключі груп
+    .ToList();
+
+var productLabel = Product.ProductInfo.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_Product_Planning_Base_Label"")?.Value?.ToString();
+
+    if (groupedProductsWithZeroSum.Contains(productLabel))
+    {
+        result = 1;
+    }
+    else
+    {
+        result = kpi_UpliftCalc_Mechanic;
+    }
+return result;",,0,1,,FALSE,,,0
+88eafbef-508d-473f-9b79-88a3155b3ff9,kpi_transport_promo,0,2e5db06d-47e4-4221-adb4-fbece684a762,,0,2,1,,,0,0,,FALSE,,,0
+447ab844-d672-49f4-af05-8a457d640072,kpi_cogs_baseline,0,0c5615b2-11f4-4e6f-a740-f8053e3ff031,,0,2,1,,,0,0,,FALSE,,,0
+ef24632d-b51e-446f-9222-8a8e7f2d04c3,kpi_GCMShelfBaselineSKU,2,,,,,1,"decimal result = 0;
+    result = kpi_Baseline_Product_calc * ((kpi_Listing_customer_price_automatically - (kpi_Listing_customer_price_automatically*kpi_rebatePromoBonus/100)- kpi_cogs_promo) - kpi_other_promo - kpi_transport_promo - kpi_WHS_promo);
+return result;",,0,1,,FALSE,,,0
+6ac89799-3f7c-4027-b71a-912c6dc798aa,kpi_A_other_promo,2,,,,,0,"  if (Products.Count()>0){
+return	Products.Average(p => p.kpi_other_promo);
+}
+return 0;
+
+",,0,0,,FALSE,,,0
+b697d4ca-bdef-42ca-ac77-9130c9f84ce9,kpi_PromoPriceWithHealthTAX_HU,2,,,,,1,"decimal result = 0;
+
+// Перевіряємо, чи кількість продуктів не дорівнює нулю
+if (kpi_Promo_price_proposal_manually_HU != 0)
+{
+    result = kpi_Promo_price_proposal_manually_HU + 10;
+}
+else
+{
+    result = 0;
+}
+// Округлюємо result до цілого і приводимо до типу int
+return (int)Math.Round(result);",,0,2,,FALSE,,,1
+47160d6a-218b-4449-8af3-91da435455c0,kpi_Baseline_Product_calc,2,,,,,1,"var    Number_Shipmentdays_of_CA=((Activity.ShipmentEndDate - Activity.ShipmentStartDate).Days +1);
+if (kpi_Baseline_ProductRead != null)
+{
+    return kpi_Baseline_ProductRead * (Number_Shipmentdays_of_CA);
+}
+else
+{
+    return 0; // Значення за замовчуванням
+}",,0,1,,FALSE,,,0
+ba41d07f-4c27-477f-bc11-92fcbca6c4f1,kpi_GCM_total_BW,2,,,,,0,"return kpi_GCM_total_promo - kpi_GCM_total_baseline
+ ;",,0,0,,FALSE,,,0
+e32a0b26-2c89-4ed1-9463-93b6b3914c7d,kpi_regular_baseline,2,,,,,0,"  if (Products.Count() != 0 ){
+return	Products.Average(p => p.kpi_Listing_customer_price_automatically);
+}
+else{
+return 0;
+}",,0,0,,FALSE,,,0
+e9ae7c1e-347b-4291-b8a5-9a0ecde2ea91,kpi_sell_In_manually,1,,,,,1,,,3,1,b45c13b3-41c1-4737-83c8-a9ba29a4d574,FALSE,,,0
+491ab7fc-6794-480f-a18d-9a1f730b6e8f,kpi_Baseline_Product_Pcs,2,,,,,1," decimal result = 0; // Ініціалізуємо змінну result зі значенням 0
+// Перевіряємо, чи кількість продуктів не дорівнює нулю
+ if (Activity.Products.Count() != 0)
+ {
+result = kpi_Baseline_Product_calc / 1000;
+}
+
+return result;",,0,1,,FALSE,,,0
+12e70200-28fc-49cf-9c74-9a4f261265dc,kpi_Min_Budgeted_Promo_price,0,8e9b1397-117e-4227-b8d7-71e9bcd1dff8,,1,2,1,,,0,2,,FALSE,,,0
+8be28b7e-0cef-4c84-8aa1-9a767d95a6cc,kpi_highlightGreenPromotionalTypeGuideline,2,,,,,1,"if (Activity.cf_UnsavedNew is true)
+{
+    return false;
+}
+
+if (kpi_ExistingProduct == false)
+{
+    return false;
+}
+return kpi_PromotionalTypeCheckGuideline;",,0,3,,FALSE,,,2
+1ca862eb-4ab1-49bd-97fe-9b15e4f9d1ae,kpi_InOutOfGuidlineAgregate,2,,,,,1,"return 0;
+
+//if (Activity.cf_UnsavedNew is true)
+//{
+//    return 1; // Повертаємо 1, якщо Activity.cf_UnsavedNew дорівнює true
+//}
+
+// Перевіряємо KPI для кожного продукту
+//if (!kpi_mostFrequentPromoShelfPriceGuideline ||  
+//    !kpi_PromotionalTypeCheckGuideline ||  
+//    !kpi_CombinationToAvoidInOutOfGuideline) 
+//{
+//    return 1; // Якщо хоча б один KPI дорівнює false, повертаємо 1
+//}
+
+//return 0; // Якщо всі KPI дорівнюють true, повертаємо 0
+
+",,0,3,,FALSE,,,1
+2dafea2a-be78-4eb3-ac0d-9b19a9512570,kpi_GCM_price_shelf_BW,2,,,,,0,"return
+kpi_GCM_price_shelf_promo - kpi_GCM_price_shelf_baseline ;
+//kpi_Min_Budgeted_Promo_price_total - kpi_regular_baseline;",,0,0,,FALSE,,,0
+6db2da1c-d38d-4485-81c5-9b90d3250a5b,kpi_GCM_promo_price_index,2,,,,,0,"decimal result;
+
+if ((decimal)kpi_GCM_promo_price_baseline != 0)
+{
+    result =  ((decimal)kpi_GCM_promo_price_promo / (decimal)kpi_GCM_promo_price_baseline) *100;
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;",,0,0,,FALSE,,,0
+bcd8855a-87d1-412a-8fa8-9d01def3a2c9,kpi_ActualBudget,1,,,,,0,,,0,0,,FALSE,,,0
+7eca997c-25fd-414e-bd08-9d27f3891b51,kpi_rebateBaseline,0,f3b5d4b3-9c07-4dfb-8573-8874063f8164,,0,2,1,,,0,0,,FALSE,,,0
+883c0b74-685b-4062-85d2-9d4076a540af,kpi_Gross_Margin,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_GrossMarginSKU);
+}
+return result;
+",,0,0,,FALSE,,,0
+612cb247-6cb9-48c7-97d1-9d761e77be8b,kpi_VariablePromoSKU,2,,,,,1,"decimal result = 0;
+    result = kpi_Promo_price_proposal_manually * (kpi_rebatePromoBonus/100)*kpi_PromoVolumePlanSKU;
+return result;",,0,1,,FALSE,,,0
+5de2289d-917b-4b3e-b1b0-9f0f097a948c,kpi_ACT_GCM_total_BW,2,,,,,0,return kpi_ACT_GCM_total_promo - kpi_GCM_total_baseline;,,0,0,,FALSE,,,0
+1a6a1bad-ab3b-44bc-83a3-9f3bf172f661,kpi_Net_Revenue_L9,2,,,,,1,"decimal result = 0;
+var grP = Activity.Products
+    .GroupBy(p => p.Product.ProductInfo.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_Product_Planning_Base_Label"")?.Value?.ToString())
+    .Select(g => new 
+    {
+        g.Key,
+        BaselineSum = g.Sum(p => p.kpi_Baseline_Product_calc),
+        PromoUpliftSum = g.Sum(p => p.kpi_Promo_Uplift_KAM),
+        MinBPPAvg = g.Average(p => p.kpi_Min_Budgeted_Promo_price),
+        RebatePromoBonusAvg = g.Average(p => p.kpi_rebatePromoBonus),
+        FixedInvestmentSum = g.Sum(p => p.kpi_FixedInvestment_KAM)
+    })
+    .ToList();
+var groupData = grP.FirstOrDefault(g => g.Key == Product.ProductInfo.CustomFields
+    .FirstOrDefault(cf => cf.Name == ""cf_Product_Planning_Base_Label"")?.Value?.ToString());
+if (groupData != null)
+    result = (groupData.BaselineSum + groupData.PromoUpliftSum) * 
+             (groupData.MinBPPAvg * (1 - groupData.RebatePromoBonusAvg / 100)) - 
+             groupData.FixedInvestmentSum;
+return result;",,0,3,,FALSE,,,0
+b0bfc276-2c70-4823-8176-9f6dd49c8a2c,kpi_baseline,2,,,,,0,"  if (Products.Count() != 0 ){
+return	Products.Sum(p => p.kpi_Baseline_Product_calc);
+}
+else{
+return 0;
+}","Plan & Fact: auto-calculation is described in Chapter 6. Overview of the Baseline	
+",0,0,,FALSE,,,0
+a8058eed-4f11-4e7f-a813-9f7184116148,kpi_frcPromoVolumeShort,0,b7a89f8d-24c9-4fdf-858e-9f99eb8b42be,,,,2,,,0,1,,FALSE,,,0
+38c1a450-1c18-4d7f-95d2-a46c9544bb83,kpi_kpi_Promo_Uplift_KAM_1000,2,,,,,1," decimal result = 0; // Ініціалізуємо змінну result зі значенням 0
+// Перевіряємо, чи кількість продуктів не дорівнює нулю
+ if (Activity.Products.Count() != 0)
+ {
+result = kpi_Promo_Uplift_KAM / 1000;
+}
+
+return result;",,0,1,,FALSE,,,0
+44664f1a-f8b6-40f7-a0eb-a4c9fd1e0457,kpi_DisplayCombinationToAvoidInOutOfGuideline,2,,,,,1,return 0;,,0,3,,FALSE,,,0
+8f18f1f0-e620-4a22-b58a-a4ee510240f5,kpi_volume_after_promo,1,,,,,0,,,0,0,,FALSE,,,0
+53cf61bd-48c8-4ade-b2eb-a5df8e35b183,kpi_Pile1,1,,,,,0,,,0,0,,FALSE,,,0
+3633f9a0-ea25-4187-bd37-a6f252535095,kpi_Better_or_Worse,2,,,,,0,return kpi_promo_total_volume_plan - kpi_baseline ;,,0,0,,FALSE,,,0
+90528ece-85a8-4b09-8f3e-a7f303957d85,kpi_volume_pre_promo,1,,,,,0,,,0,0,,FALSE,,,0
+b45c13b3-41c1-4737-83c8-a9ba29a4d574,kpi_Baseline_Product_Intermediate,2,,,,,1,"decimal result = 0;
+var groupedProductsWithZeroSum = Activity.Products
+    .Where(p => p.kpi_Baseline_Product != null)
+    .GroupBy(p => p.Product.ProductInfo.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_Product_Planning_Base_Label"")?.Value?.ToString())
+    .Select(group => new 
+    {
+        GroupKey = group.Key,        Products = group.ToList(),
+        SumBaselineProduct = group.Sum(p => p.kpi_Baseline_Product)
+    })
+    .Where(group => group.SumBaselineProduct == 0)
+    .Select(group => group.GroupKey) // Зберігаємо лише ключі груп
+    .ToList();
+
+var productLabel = Product.ProductInfo.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_Product_Planning_Base_Label"")?.Value?.ToString();
+
+    if (groupedProductsWithZeroSum.Contains(productLabel))
+    {
+        result = 1;
+    }
+    else
+    {
+        result = kpi_Baseline_Product;
+    }
+return result;",,0,0,,FALSE,,,0
+8b977a54-806e-4179-8e4e-a9e804538c18,kpi_highlightCombinationToAvoidInOutOfGuideline,2,,,,,1,"
+if (Activity.cf_UnsavedNew is true)
+{
+    return false;
+}
+
+if (kpi_ExistingProduct is false)
+{
+    return false;
+}
+
+return !kpi_CombinationToAvoidInOutOfGuideline;",,0,3,,FALSE,,,2
+7ae4c513-8358-496b-944f-aa6d10d910c8,kpi_VBB,2,,,,,1,"//return kpi_Promo_Uplift_KAM ;
+return 1;",,0,1,,FALSE,,,0
+8769b582-2f1e-4997-9a19-aaab13156b61,kpi_GCM_total_shelf_index,2,,,,,0,"decimal result;
+
+if ((decimal)kpi_GCM_total_shelf_baseline != 0)
+{
+    result =  ((decimal)kpi_GCM_total_shelf_promo  / (decimal)kpi_GCM_total_shelf_baseline)*100-100;
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;",,0,0,,FALSE,,,0
+0b5716e8-21ca-4039-aa59-aac9e211ae05,kpi_ActSalesMarginSKU,2,,,,,1,"decimal result = 0;
+result = (decimal) (kpi_ActNetRevenueSKU-kpi_cogs_promo*kpi_sell_out_manually);
+return result;",,0,1,,FALSE,,,0
+d80464cb-4a1c-48fb-9880-ab23bbb7f079,kpi_SKUHistoricalDataForL9,1,,,,,2,,,0,0,,FALSE,,,0
+8cdd99b8-6acc-4237-b707-ac58b31a6edd,kpi_PromotionalTypeCheckGuideline,1,,,,,1,,,2,0,,FALSE,,,2
+27870d3e-51b7-4d17-aecf-ac7c57160e77,kpi_SMM_SFA_MM_promo,2,,,,,0,return    kpi_SFA_MM_promo *(1-kpi_A_kpi_rebatePromoBonus/100) -kpi_A_cogs_promo ;,,0,0,,FALSE,,,0
+6a6221f2-c350-4178-929b-ad838667de34,kpi_Net_Revenue,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_NetRevenueSKU);
+}
+return result;",,0,0,,FALSE,,,0
+18b090d5-9e86-4790-8dfd-ad99b563fa6b,kpi_UpliftCalc_Mechanic,2,,,,,1,"var    Number_Shipmentdays_of_CA=((Activity.ShipmentEndDate - Activity.ShipmentStartDate).Days +1);
+
+// Створюємо словник для зберігання значень
+Dictionary<Guid, decimal> kpiValues = new Dictionary<Guid, decimal>
+{
+    { new Guid(""47C747D8-BA01-432A-A320-B6F7DD7D0633""), kpi_UpliftCalc_Leaflet },
+    { new Guid(""78041807-4A08-4C31-884E-FE3BDCFDEA45""), kpi_UpliftCalc_SlntPromo },
+    { new Guid(""04563662-0556-441F-8E80-A74E595C7097""), kpi_UpliftCalc_SecPlace },
+    { new Guid(""3E66F51F-C580-4B7F-8176-8AD2B4B246A9""), kpi_UpliftCalc_EDLP }
+};
+
+// Шукаємо значення у словнику
+if (kpiValues.TryGetValue(Activity.MechanicId, out decimal kpiValue))
+{
+    return kpiValue * (Number_Shipmentdays_of_CA);
+}
+else
+{
+    return 0; // Значення за замовчуванням
+}
+",,0,1,,FALSE,,,0
+b867b5c4-7659-4af4-b2e8-aecb035b5ab2,kpi_factNumberOfPromoRead,0,080571f2-5016-457a-838e-c714bfb739d0,,,,2,,,0,3,,FALSE,,,0
+85af2e91-fb7e-428f-9e77-b2a3a3a3facb,kpi_Baseline_Product_1000,2,,,,,1," decimal result = 0; // Ініціалізуємо змінну result зі значенням 0
+// Перевіряємо, чи кількість продуктів не дорівнює нулю
+ if (Activity.Products.Count() != 0)
+ {
+result = kpi_Baseline_Product_calc / 1000;
+}
+
+return result;",,0,1,,FALSE,,,0
+43ee17c3-56c6-4509-a2d4-b3de4d4cf833,kpi_FrontRetailMarginBtl,2,,,,,1,"decimal result = 0;
+if (kpi_ShelfDummy == 0)
+{
+    result = 1;
+}
+else
+{
+    result = 1 - (decimal)kpi_Promo_price_proposal_manually / kpi_ShelfDummy;
+}
+return result;",,0,2,,FALSE,,,0
+390275af-770a-47ad-baf7-b3f773fea067,kpi_A_smm_baseline,2,,,,,0,"return
+kpi_Min_Budgeted_Promo_price_total *(1-kpi_A_rebateBaseline/100) - kpi_A_cogs_baseline
+;",,0,0,,FALSE,,,0
+b7de5247-1f0b-4265-b48f-b4184a62cb92,kpi_ActVolumeBWSKU,2,,,,,1,"decimal result = 0;
+result = (decimal) (kpi_sell_out_manually - kpi_Baseline_Product_calc);
+return result;",,0,1,,FALSE,,,0
+abc4773a-5d07-40b1-b3ac-b4d99f073bb7,kpi_Promo_price_proposal_manually_HU,1,,,,,1,,,2,2,,FALSE,,,1
+51fd25bf-d0ca-437d-bcc5-b596deb9c58d,kpi_Forward_Buy,2,,,,,2,"var isGroup1 = ClientDetails.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_IsGroup1"")?.Value;
+var period = ObjectSpace.GetObjectByKey<Period>(RelatedPeriodId);
+ 
+if (period.EndDate.Date < DateTime.Now.Date)
+{
+    var diff = kpi_frcSKUSalesAsShare - kpi_BaselineVBB - kpi_ForecastPromoVolume;
+    //return diff < 0 ? diff : 0;
+    return diff;
+}
+else if (isGroup1 != null && (bool)isGroup1 == true && period.StartDate.Date > DateTime.Now.AddMonths(2).Date)
+{
+    return 0;
+}
+else
+{
+    return 0;
+}",,0,1,,FALSE,,,0
+04624e9f-426b-4969-91c7-b6edd57eba30,kpi_disableKpiEditing,2,,,,,1,"if (Activity.cf_DisableKpiPromo is true)
+{
+    return true;
+}
+else
+{
+    return false;
+}",,0,4,,FALSE,,,2
+80fdd0c8-cd25-4694-af2d-b7efbde7029c,kpi_GCMShelfPromoSKU,2,,,,,1,"decimal result = 0;
+    result = kpi_PromoVolumePlanSKU  * ((kpi_Promo_price_proposal_manually - (kpi_Promo_price_proposal_manually * kpi_rebatePromoBonus / 100) - kpi_cogs_promo) - kpi_other_promo - kpi_transport_promo - kpi_WHS_promo) - kpi_FixedInvestment_KAM;
+return result; ",,0,1,,FALSE,,,0
+53ab9ca5-34da-49e6-9998-ba3c3e54ec67,kpi_Baseline_ProductRead,0,ccebb45d-846b-4e46-85c3-80c4c2722236,,0,4,1,,,0,1,,FALSE,,,0
+a2c2bb8f-7aaa-4987-8876-ba7011b2dc61,kpi_FixedInvestment_Intermediate,1,,,,,1,,,0,0,,FALSE,,,0
+f98d2319-a179-4bad-ae0d-baa0075432b0,kpi_UpliftCalc_SlntPromo,0,039463b3-2e17-4670-889f-66cb875e5628,,0,4,1,,,0,0,,FALSE,,,0
+588add38-617e-4324-8c2c-bd283c058b43,kpi_highlightGreenCombinationToAvoidGuideline,2,,,,,1,"if (Activity.cf_UnsavedNew is true)
+{
+    return false;
+}
+
+if (kpi_ExistingProduct is false)
+{
+    return false;
+}
+return kpi_CombinationToAvoidInOutOfGuideline;",,0,3,,FALSE,,,2
+9f4e3bf2-5d19-459a-8f7e-bdef4307a771,kpi_A_transport_baseline,2,,,,,0,"
+  if (Products.Count()>0){
+return	Products.Average(p => p.kpi_transport_baseline);
+}
+return 0;
+",,0,0,,FALSE,,,0
+e995a3ea-0ea9-46de-9bc0-c09a10f23751,kpi_CombinationToAvoidInOutOfGuideline,1,,,,,1,,,2,0,,FALSE,,,2
+c996c439-38a7-432c-b7bb-c107dc70b281,kpi_cogs_promo,0,a2da9074-b711-4cb1-b425-bfb52fe46200,,0,2,1,,,0,0,,FALSE,,,0
+b113aecb-9530-4e35-a1f9-c2743b785508,kpi_rebatePromoBonus,0,41074e05-d959-4878-b713-4e9c18ab3edd,,0,2,1,,,0,0,,FALSE,,,0
+5dcb5331-5bb3-409d-86eb-c3639b7911aa,kpi_DisplayPromotionalTypeCheckGuideline,2,,,,,1,return 0;,,0,3,,FALSE,,,0
+4d311e0e-1ccb-4cc8-a24d-c4b29cb875ed,kpi_A_cogs_baseline,2,,,,,0,"  if (Products.Count()>0){
+return	Products.Average(p => p.kpi_cogs_baseline);
+}
+return 0;
+",,0,0,,FALSE,,,0
+f50d3cb0-0bdc-4b15-af0d-c70728452c88,kpi_Promo_Uplift_KAM,1,,a4f41038-7d2e-442d-8dc1-7a8a6a6a11ed,,,1,,,3,1,e0415bb7-bca1-48b0-898f-883aa9648eda,TRUE,StartDate,EndDate,0
+13660708-ffbc-4d28-8b8c-caeb7f4e8a32,kpi_GCM_price_shelf_baseline,2,,,,,0,"return
+kpi_SMM_SFA_MM_baseline-kpi_A_other_promo-kpi_A_transport_promo-kpi_A_WHS_promo ;",,0,0,,FALSE,,,0
+32cb9855-2ed4-4c75-9d07-cbdb3b23828c,kpi_highlightMinBudgetedPromoprice,2,,,,,1,"if (kpi_Min_Budgeted_Promo_price == 0)
+{
+    return true;
+}
+
+return false;
+",,0,3,,FALSE,,,2
+16f52640-b533-4851-844a-cc1ef4a5206b,kpi_other_promo,0,b12edb25-d8cb-4eeb-9aac-e2d00da8c4c6,,0,2,1,,,0,0,,FALSE,,,0
+ad8443ec-9e0a-44fe-96a8-cc3cc656ee59,kpi_kpi_fixed_investment,2,,,,,1,"decimal result = 0;
+
+var groupedProductsWithZeroSum = Activity.Products
+    .GroupBy(p => p.Product.ProductInfo.CustomFields.FirstOrDefault(cf => cf.Name == ""cf_Product_Planning_Base_Label"")?.Value?.ToString())
+    .Select(group => new
+    {
+        GroupKey = group.Key,
+        Products = group.ToList(),
+        Sum = group.Sum(p => p.kpi_Baseline_Product_calc + p.kpi_Promo_Uplift_KAM) // Обчислюємо суму
+    })
+    .Where(group => group.Sum == 0) // Залишаємо групи з сумою 0
+    .Select(group => group.GroupKey)
+    .ToList();
+
+var productLabel = Product.ProductInfo.CustomFields
+    .FirstOrDefault(cf => cf.Name == ""cf_Product_Planning_Base_Label"")?.Value?.ToString();
+
+result = groupedProductsWithZeroSum.Contains(productLabel) 
+    ? 1 
+    : (kpi_Baseline_Product_calc + kpi_Promo_Uplift_KAM != 0 
+        ? kpi_Baseline_Product_calc + kpi_Promo_Uplift_KAM 
+        : kpi_FixedInvestment_KAM);
+
+return result;",,0,1,,FALSE,,,0
+1efa9810-f39c-4472-9565-cf4b3dcc669e,kpi_A_WHS_baseline,2,,,,,0,"
+  if (Products.Count()>0){
+return	Products.Average(p => p.kpi_WHS_baseline);
+}
+return 0;
+",,0,0,,FALSE,,,0
+a8f00a79-5fc9-4cdd-bfdd-d31953b5b029,kpi_ACT_GCM_total_shelf_BW,2,,,,,0,"return 
+kpi_ACT_GCM_total_shelf_promo -kpi_GCM_total_shelf_baseline ;",,0,0,,FALSE,,,0
+f294ed6c-5928-40a8-ad9d-d49d849592da,kpi_Pile2,1,,,,,1,,,0,0,,FALSE,,,1
+1eeacde4-8f85-4062-b394-d5a78efcfc5c,kpi_ExistingProduct,1,,,,,1,,Технічний KPI для визначення що продукт щойно доданий до активності і активність ще не засейвлена. По замовчуванню False,0,0,,FALSE,,,2
+4ba5c7bb-8e47-415a-9094-d63b2fac0952,kpi_ACT_GCM_total_index,2,,,,,0,"decimal result;
+
+if ((decimal)kpi_GCM_total_baseline != 0)
+{
+    result =   ((decimal)kpi_ACT_GCM_total_promo / (decimal)kpi_GCM_total_baseline)*100;
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;", ,0,0,,FALSE,,,0
+6e560050-41bb-4ed6-98ca-d989bb8421e6,kpi_highlightListingCustomerPriceAutomatically,2,,,,,1,"if (kpi_Listing_customer_price_automatically == 0)
+{
+    return true;
+}
+
+return false;
+",,0,3,,FALSE,,,2
+2aa4ef11-fa82-492c-8c20-d9c3ed9a3efe,kpi_GCM_total_index,2,,,,,0,"
+decimal result = 0;
+
+// Перевіряємо, чи знаменник не дорівнює 0
+if (kpi_GCM_total_baseline != 0)
+{
+    result = ((kpi_GCM_total_promo / kpi_GCM_total_baseline) * 100) - 100;
+}
+
+return result;",,0,0,,FALSE,,,0
+07fe61c3-2579-4c84-82b5-d9d92fe7ccf9,kpi_ASmmBaselineSKU,2,,,,,1,"decimal result = 0;
+    result = kpi_Listing_customer_price_automatically - (kpi_Listing_customer_price_automatically*kpi_rebatePromoBonus/100) - kpi_cogs_promo;
+return result;",,0,1,,FALSE,,,0
+b482e25b-a47b-4cad-8e00-dafb295bb6bf,kpi_GrowthRate_tech,1,,,,,2,,,0,0,,FALSE,,,0
+e3417346-6e71-4cfa-b95d-db1b23ff2be2,kpi_GCMPromoSKU,2,,,,,1,"decimal result = 0;
+
+result = kpi_sell_out_manually * 
+         (
+            (
+                kpi_Promo_price_proposal_manually -
+                (kpi_Promo_price_proposal_manually * kpi_rebatePromoBonus / 100) -
+                kpi_cogs_promo
+            ) - 
+            kpi_other_promo - 
+            kpi_transport_promo - 
+            kpi_WHS_promo
+         ) - 
+         kpi_FixedInvestment_KAM;
+
+return result;
+",,0,1,,FALSE,,,0
+422ed0c3-a5b6-49b2-b88c-db36ce759e38,kpi_GCM_total_baseline,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_GCMBaselineSKU);
+}
+return result;",,0,0,,FALSE,,,0
+00f23959-0053-4425-a5d2-dcf07130175a,kpi_GCM_price_shelf_index,2,,,,,0,"decimal result;
+
+if ((decimal)kpi_GCM_price_shelf_baseline > 0)
+{
+    result =   ((decimal)kpi_GCM_price_shelf_promo / (decimal)kpi_GCM_price_shelf_baseline )*100;
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;",,0,0,,FALSE,,,0
+6d2c2d36-5daa-48e2-86c1-ddaaef4862cc,kpi_A_smm_promo,2,,,,,0,"return 
+kpi_promotional_promo *(1-kpi_A_kpi_rebatePromoBonus/100) -kpi_A_cogs_promo
+;",,0,0,,FALSE,,,0
+b9f986d9-d4d2-49b7-84e6-dedeaeec8545,kpi_Promo_Type_GuideKPI,1,,,,,1,,,2,0,,FALSE,,,3
+4c6d1180-5336-4e2c-800c-e0b3751a1733,kpi_Listing_customer_price_automatically,0,1b01f71d-257d-40a8-a38a-04f81c5ccff7,,1,2,1,,,0,2,,FALSE,,,0
+c4e316f2-737d-4fc7-a155-e1792ec32218,kpi_TotalPlanVolumePromotion,2,,,,,1,"return	kpi_Promo_Uplift_KAM + kpi_Baseline_Product_calc;
+",,0,1,,FALSE,,,0
+c2660364-49e9-4aab-a141-e1798d8e763c,kpi_ActNetRevenueSKU,2,,,,,1,"decimal result = 0;
+result = (decimal) (kpi_Promo_price_proposal_manually*kpi_sell_out_manually*(1-kpi_rebatePromoBonus/100)-kpi_FixedInvestment_KAM);
+return result;",,0,1,,FALSE,,,0
+100e8819-9668-4044-bacc-e2ae8744734d,kpi_Copy_Bool,1,,,,,1,,,2,0,,FALSE,,,2
+764ff6cc-decb-42c2-ab94-e650bba15416,kpi_sell_out_calc,2,,a4f41038-7d2e-442d-8dc1-7a8a6a6a11ed,,,1,"decimal result = 0;
+if (kpi_sell_out_manually != 0 && kpi_FiFOdaysFoActSales_SelOut > 0)
+{
+    result = kpi_sell_out_manually - (kpi_Baseline_ProductRead*kpi_FiFOdaysFoActSales_SelOut);
+}
+else if (kpi_FiFOdaysFoActSales_SelIn > 0)
+{
+    result = kpi_sell_In_manually - (kpi_Baseline_ProductRead*kpi_FiFOdaysFoActSales_SelIn);
+}
+else 
+{
+    result = 0;
+}
+return result;",,0,1,,TRUE,ShipmentStartDate,ShipmentEndDate,0
+9e21fe1a-4d87-49a6-a91a-e89ffe98934e,kpi_UnfoldedBaseline,1,,,,,2,,,0,1,,FALSE,,,0
+7550f4e0-eb14-4e19-8330-e9379733313e,kpi_highlightMostFrequentPromoShelfPriceGuideline,2,,,,,1,"if (Activity.cf_UnsavedNew is true)
+{
+    return false;
+}
+
+if (kpi_ExistingProduct == false)
+{
+    return false;
+}
+return !kpi_mostFrequentPromoShelfPriceGuideline;",,0,3,,FALSE,,,2
+1447c10f-e2ba-4ddc-8aa0-ea23f33baaa2,kpi_GrossMarginSKU,2,,,,,1,"decimal result = 0;
+result = (decimal) (kpi_SalesMarginSKU - (kpi_Baseline_Product_calc + kpi_Promo_Uplift_KAM) * (kpi_transport_promo + kpi_other_promo + kpi_WHS_promo));
+return result;",,0,1,,FALSE,,,0
+248e88cb-f99e-4ffc-9ffa-eaf80dd4e329,kpi_NumberOfPromotionsL9,1,,,,,2,,,2,3,,FALSE,,,0
+e1c69120-aa1d-43c7-a101-ed981e27fa73,kpi_transport_baseline,0,621c44ab-6958-4c0a-8d6d-fd17428e34b5,,0,2,1,,,0,0,,FALSE,,,0
+84b835b0-8b35-46b1-bf6e-edbaddf08631,kpi_highlightCombinationToRecommendGuideline,2,,,,,1,"if (Activity.cf_UnsavedNew is true)
+{
+    return false;
+}
+
+if (kpi_ExistingProduct == false)
+{
+    return false;
+}
+return !kpi_CombinationToRecommendInOutOfGuideline;",,0,3,,FALSE,,,2
+7c5be727-9d29-4509-92e5-edfbfd02e867,kpi_frcSKUSalesAsShare,0,9d98bd8f-21e3-494b-ba15-ce3a30866c47,,,,2,,,0,1,,FALSE,,,0
+b74e39b5-263e-4dff-9073-ee74a9395497,kpi_mostFrequentPromoShelfPriceGuideline,1,,,,,1,,,2,0,,FALSE,,,2
+3acc0e80-058c-4029-b92f-f051c81353ce,kpi_GCM_total_promo,2,,,,,0,"decimal result = 0;
+if (Products.Any()) // Перевіряємо, чи є продукти
+{
+    result = Products.Sum(p => p.kpi_GCMPromoSKU);
+}
+return result;",,0,0,,FALSE,,,0
+a374d13e-fa75-4049-bf40-f0c00926a868,kpi_shelfPriceVisualState,2,,,,,1,"bool isDisabled = Activity.cf_DisableKpiPromo == true;
+bool isHighlighted = false;
+
+if (Activity.cf_UnsavedNew != true && kpi_ExistingProduct == true)
+{
+    isHighlighted = !kpi_mostFrequentPromoShelfPriceGuideline;
+}
+
+return isDisabled && isHighlighted;
+",,0,3,,FALSE,,,2
+4f5f0a72-4185-4e5f-9374-f19f059c2962,kpi_Highlight_Zero_And_DisabledPProposalManually,2,,,,,1,"bool isZero = kpi_Promo_price_proposal_manually == 0;
+bool isDisabled = Activity.cf_DisableKpiPromo == true;
+
+return isZero && isDisabled;",,0,3,,FALSE,,,2
+a7fb94c2-9aac-45b5-98ec-f47b9521ae88,kpi_SFA_MM_promo,2,,,,,0,"  if (Products.Count() != 0 ){
+return	Products.Average(p => p.kpi_Min_Budgeted_Promo_price
+);
+
+}
+else{
+return 0;
+}
+",,0,0,,FALSE,,,0
+8b9c913c-0a0b-4357-ab8b-f5703d7c4a4f,kpi_A_WHS_promo,2,,,,,0,"  if (Products.Count()>0){
+return	Products.Average(p => p.kpi_WHS_promo);
+}
+return 0;
+",,0,0,,FALSE,,,0
+65ae949d-1264-42dd-a4ec-f68f8eace7e0,kpi_Fixed_Investment_header,1,,,,,0,,,0,0,,FALSE,,,0
+d9eea63b-5603-4e83-a2c7-f72e918b865e,kpi_Planned_Volume,1,,,,,0,,,0,0,,FALSE,,,0
+c55f7f77-eb98-4571-92d9-fa42b35341b9,kpi_Reach,1,,,,,0,,,0,0,,FALSE,,,0
+676495b2-c283-4a51-8169-fa84e6474f46,kpi_ROPI_price_shelf_BW,2,,,,,0,"decimal result;
+
+if ((decimal)kpi_investment_total_promo  > 0)
+{
+result =  ((decimal)kpi_GCM_total_shelf_BW /(decimal)kpi_investment_total_promo )*100;
+}
+else
+{
+    result = 0;
+}
+
+return result;",,0,0,,FALSE,,,0
+13313bf6-ccb3-443a-8f8d-fa98b0a348e8,kpi_A_other_baseline,2,,,,,0,"  if (Products.Count()>0){
+return	Products.Average(p => p.kpi_other_baseline);
+}
+return 0;
+",,0,0,,FALSE,,,0
+1d42b329-0b98-4cab-8906-faac59012621,kpi_SentToApprove,2,,,,,0,"if (!Products.Any())
+{
+    return 0;
+}
+bool verification = Products.Any(p => p.kpi_Promo_price_proposal_manually > p.kpi_Min_Budgeted_Promo_price);
+
+return verification ? 1 : 0;
+",,0,0,,FALSE,,,0
+7504bedd-dbfe-47e2-9a4e-faad2b393424,kpi_SFA_MM_index,2,,,,,0,"decimal result;
+
+if ((decimal)kpi_regular_baseline > 0)
+{
+    result =    (decimal)kpi_SFA_MM_promo/(decimal)kpi_regular_baseline;
+}
+else
+{
+    result = 0; // або будь-яке інше значення, яке відповідає логіці вашої програми
+}
+
+return result;",,0,0,,FALSE,,,0
+67109be2-dda8-4df6-8bff-fc576c6419ca,kpi_Promo_Volume_Past,2,,ccc3f49f-1cb8-4ff2-bf74-cc5b3a8fef5c,,,1,"return new[] {""🔒 Evaluated / Closed"", ""🏁 Ended""}.Contains(Activity.State.Name.ToString()) ? kpi_sell_out_calc : 0;",,0,1,,TRUE,ShipmentStartDate,ShipmentEndDate,0
+02a71d42-1054-4bb5-a080-fe3ccbf7ef7f,kpi_GCM_total_shelf_BW,2,,,,,0,return kpi_GCM_total_shelf_promo -kpi_GCM_total_shelf_baseline ;,,0,0,,FALSE,,,0
+ac380a92-2587-456b-9300-ff5af7566e11,kpi_NumberOfPromotionsVBB,1,,,,,2,,,0,1,,FALSE,,,0

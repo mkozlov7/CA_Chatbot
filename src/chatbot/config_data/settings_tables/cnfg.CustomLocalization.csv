@@ -1,0 +1,230 @@
+﻿Id,ObjectType,ObjectId,LocalizationCode,VALUE
+9f0bb8d3-0450-455b-8ed0-844253ef645d,cnfg.KPI,a498ac12-a385-4d9f-96b1-178f89fb82b7,en,SPL price (automatically)
+b383f4d8-cc71-45aa-885b-fe3693ca6a70,cnfg.KPI,4c6d1180-5336-4e2c-800c-e0b3751a1733,en,BG Non-Promo cena (ks)
+53928a8c-6097-4d1a-8470-99d9deb8c810,cnfg.KPI,1629b31a-63bb-49f5-9236-80a97b74838c,en,
+a5cf75ab-d761-488e-81d7-4fbdd38aac0d,cnfg.KPI,9b04d574-23e9-4f78-b906-76a3d0895d1a,en,"
+"
+26bc5ef4-23b0-4e7c-8aca-5b02400a3432,cnfg.KPI,bf3cd3e4-7505-44fb-9144-87d507324e76,en,"kpi_Promo_Uplift_automatically
+"
+28b73fef-430f-493d-9903-ff7a1a5e07e8,cnfg.KPI,b0bfc276-2c70-4823-8176-9f6dd49c8a2c,en,
+404fd7e4-0c50-4097-8508-19e380bf502f,cnfg.KPI,67514284-8e2d-4002-9013-10da455bf4e5,en,
+8d77ae83-8732-417d-84e4-ffc275e23fdf,cnfg.KPI,3633f9a0-ea25-4187-bd37-a6f252535095,en,
+c864bb3b-ac26-4c97-8040-8d9353ab9293,cnfg.KPI,f431191b-1e4c-4609-a3d2-037532517f2b,en,
+1e2a2a8c-f5fc-42e1-a890-88cc716291ce,cnfg.KPI,e32a0b26-2c89-4ed1-9463-93b6b3914c7d,en,
+663fa951-ac81-452d-aa64-944e95c3f3c4,cnfg.KPI,7eca997c-25fd-414e-bd08-9d27f3891b51,en,
+a5350faf-c3ca-43ff-8dee-698a655efbef,cnfg.KPI,5e5a5f93-c15b-4044-8b0a-73e69b0e328b,en,
+b1f1fed6-4d6f-4b95-a987-edf80e71588d,cnfg.KPI,e8eed1ab-bb5f-4fdc-81ce-4caad029b9a9,en,
+a31c8f63-6fa2-4d9d-a36e-7aee716145eb,cnfg.KPI,a7fb94c2-9aac-45b5-98ec-f47b9521ae88,en,
+7d5e34b4-d1c8-4647-9a26-e96d82366648,cnfg.KPI,b18cf153-71f6-4921-9978-101b4f5bde67,en,
+17642f94-3cf8-497e-b364-ae5b957a7f67,cnfg.KPI,7504bedd-dbfe-47e2-9a4e-faad2b393424,en,
+32124bdf-d59b-49ee-b3c7-613d1c7ceb9a,cnfg.KPI,85d7868e-b993-44e1-9c1d-7c0cdbe28ceb,en,
+dfe02e81-c49e-4d3a-982e-10a7f0fcb76c,cnfg.KPI,6db2da1c-d38d-4485-81c5-9b90d3250a5b,en,
+5a6c171c-077a-47b1-94e4-5342298176b3,cnfg.KPI,13660708-ffbc-4d28-8b8c-caeb7f4e8a32,en,
+eca87932-7419-4c57-a6a4-51e2ce897f4e,cnfg.KPI,f0ddcdf4-9887-415e-aff6-3527c2410ba4,en,
+50a680a9-dcc4-4f36-a40b-3c3ced017e69,cnfg.KPI,2dafea2a-be78-4eb3-ac0d-9b19a9512570,en,
+9b3aad3f-bd96-4f85-b34e-f65b62439693,cnfg.KPI,12e70200-28fc-49cf-9c74-9a4f261265dc,en,BG Promo cena (ks)
+3a2c9489-3f33-45de-8900-ce96bd9aee84,cnfg.KPI,600e2731-c2b5-4022-8368-6b48c1d0b4c4,en,Discount SPL %
+fd803cf1-deca-4fb7-a0e1-790afc5fd986,cnfg.KPI,52201938-46dd-4672-9776-7c42ab1c5e04,en,Discount customer price %
+e455876a-b05c-4c83-bf9f-208396ff6ee6,cnfg.KPI,850e96db-5269-4a0e-9c63-355e985b1ab8,en,DPC s DPH (kč/ks)
+dbc2a928-7897-4f84-ade6-0baaa3cd53d6,cnfg.KPI,8b4ab946-7ade-4e1f-a579-5cd10d835180,en,Aktuální promoční cena (kč/ks)
+8547523a-b819-412c-b520-e843bfdd939e,cnfg.KPI,bacb4557-e12b-4d01-b1d8-556267843f19,en,
+6d9a0668-a390-44ce-89cc-3d96e2baed5f,cnfg.KPI,f61bf356-0257-4ced-8328-873bcc0dfdd6,en,Sell Out
+decccba2-4fb6-4ec7-9617-8db946493b75,cnfg.KPI,f50d3cb0-0bdc-4b15-af0d-c70728452c88,en,Promo objem - KAM (ks)
+9dda03e1-0a86-449c-b141-7b9437c12b96,cnfg.KPI,818b7e72-54ac-4338-9187-33bc0bd9fb86,en,
+dced9123-839c-4262-b91f-350ca0e5985c,cnfg.KPI,9aa4172e-2b1d-47d9-aa8e-186467196764,en,
+4b356c57-d86e-460e-af76-2a941908b69f,cnfg.KPI,27870d3e-51b7-4d17-aecf-ac7c57160e77,en,
+f247b23e-9b41-4cfb-9f06-68fa0000fa9d,cnfg.KPI,1b1204f0-3f58-45e4-be73-5d78c44ef2cc,en,
+4e23c6e7-02ea-4caf-8b29-bb50720563cb,cnfg.KPI,82bdafa3-8fb9-43d9-8436-7033710fe559,en,
+752f715d-5bb5-4343-a454-f3cdff8c99ff,cnfg.KPI,588585cf-59a6-4657-960f-08bbf5763dd4,en,
+31da1b62-ff87-46f0-a8c9-99c0a3b90f8d,cnfg.KPI,1efa9810-f39c-4472-9565-cf4b3dcc669e,en,
+a2dcf3e9-9412-46b6-89b9-f7871b0a231e,cnfg.KPI,8b9c913c-0a0b-4357-ab8b-f5703d7c4a4f,en,
+ef3e20af-4e0b-4ebb-9c7e-9c1c22e8e043,cnfg.KPI,cb89a801-43d1-4132-9b61-1bcc7fa8637c,en,
+0e170d62-de0b-406a-be27-51530e16c297,cnfg.KPI,d6a34985-13d3-499e-9993-75d81dbc5aa3,en,
+3785bbb6-d688-476b-9466-8d62d1af5db9,cnfg.KPI,c6921fb1-ce72-4b84-819c-62cbf4637a7a,en,
+637828ba-aa0b-4c22-93ea-1082116f9838,cnfg.KPI,00f23959-0053-4425-a5d2-dcf07130175a,en,
+07667329-32ef-40a9-80a9-4d503160e8d6,cnfg.KPI,b7786c29-4c8e-4875-acef-40ab4e9b2849,en,"Planned Budget, local currency"
+6a698669-bc4e-4051-8452-a6b93c439335,cnfg.KPI,422ed0c3-a5b6-49b2-b88c-db36ce759e38,en,
+2fd7a66d-9a4f-4ad6-ac66-50d2cdf3032b,cnfg.KPI,ba41d07f-4c27-477f-bc11-92fcbca6c4f1,en,
+3c17863c-3362-456f-a907-7978ae0af1a7,cnfg.KPI,2aa4ef11-fa82-492c-8c20-d9c3ed9a3efe,en,
+8e6e7026-0769-4a12-b9d1-84b81da28baa,cnfg.KPI,a70d86ef-c4e6-4e1d-be76-7f194507471e,en,
+5568b9f0-45bd-476a-b1f2-97e384fd1b15,cnfg.KPI,6d098f13-28d5-4db8-b099-6ef4968cab93,en,
+0c11d06e-2b2e-4c20-aa7e-17291f1f1904,cnfg.KPI,02a71d42-1054-4bb5-a080-fe3ccbf7ef7f,en,
+af92725b-f884-4201-a322-3d8bfb6cf604,cnfg.KPI,8769b582-2f1e-4997-9a19-aaab13156b61,en,
+b85c9edb-3914-46ff-a126-5d716c2d2191,cnfg.KPI,883c0b74-685b-4062-85d2-9d4076a540af,en,"Gross Margin plan
+"
+fdde994d-579f-4ffa-8b5a-fdb9706de1d0,cnfg.KPI,0b52c7e3-8602-42dd-a14d-7324ac6e34fe,en,Nepřímá sleva
+dfd28a66-76c0-47eb-9a78-a5cbb282500d,cnfg.KPI,1a99aca0-3ab6-4838-9cce-3589b09e7d5b,en,GRPs
+2f629944-8127-4591-ab37-089f2cd8e9f2,cnfg.KPI,d2e299a7-0781-4151-b224-574faf19a6e1,en,
+035f3e6c-fed1-413e-8b4e-e278b61d5458,cnfg.KPI,ad8443ec-9e0a-44fe-96a8-cc3cc656ee59,en,kpi_kpi_fixed_investment
+73a50f81-e48e-4982-af40-20b7011df70f,cnfg.KPI,bcd8855a-87d1-412a-8fa8-9d01def3a2c9,en,"Actual Budget, local currency"
+eac56d27-7c1f-45f7-a825-20e5e772eca5,cnfg.KPI,f00be0a2-82d5-47ec-ba59-580dfcd44cd8,en,
+a98cd3fc-28db-45f0-be41-42a9a482ed5a,cnfg.KPI,7de15a97-620c-4712-8f11-74335e90df80,en,
+73f62942-7f9a-45f2-96ea-49724cd96e7d,cnfg.KPI,a8f00a79-5fc9-4cdd-bfdd-d31953b5b029,en,
+713238a3-b7a2-48a0-8291-991d27ea7246,cnfg.KPI,d785974a-6960-4d01-b270-134f924a66ef,en,
+f5e3adfe-4351-453c-a46d-d9fb900fa88d,cnfg.KPI,5de2289d-917b-4b3e-b1b0-9f0f097a948c,en,
+c3292eb1-255c-4c41-9f2d-4f3454bc455c,cnfg.KPI,4ba5c7bb-8e47-415a-9094-d63b2fac0952,en,
+e6e58c54-a10a-48bd-9d92-c3d334f5ae66,cnfg.KPI,8c46c348-d156-4074-b6c0-64b621c1c08b,en,"Net Revenue 
+act"
+2583fcdf-a7e4-4653-8688-be0bde40569b,cnfg.KPI,366c8e7e-a976-4f8a-b297-02f8e75a12f7,en,"Sales Margin
+act"
+23c6f304-78f7-4cab-a52c-03f971dea37e,cnfg.KPI,b6377cbb-6bb7-40f6-9690-3f04888df25a,en,"Gross Margin
+act"
+b0a51436-751e-49c1-b578-1a4288c0535f,cnfg.KPI,b113aecb-9530-4e35-a1f9-c2743b785508,en,
+122bf8aa-a793-44fa-9b0b-cee237c8f725,cnfg.KPI,22d33f9b-0aba-4c19-80b9-7df23ba6e9fc,en,
+7cbc247e-4cdb-4e65-9fc0-f17259193678,cnfg.KPI,447ab844-d672-49f4-af05-8a457d640072,en,
+0c2d0ba7-a285-4138-97a9-a940ae1947db,cnfg.KPI,c996c439-38a7-432c-b7bb-c107dc70b281,en,
+c9d7d86b-1cbc-4519-9101-ec7c581c2fa9,cnfg.KPI,4d311e0e-1ccb-4cc8-a24d-c4b29cb875ed,en,
+e666fd1d-06bd-401c-b647-f2acc3ddff4e,cnfg.KPI,7bcdfeb7-73c3-4905-aaec-6dcd0eb333c7,en,
+56f4aa7c-a503-48bd-b93b-b2e646fc65a3,cnfg.KPI,390275af-770a-47ad-baf7-b3f773fea067,en,
+7a135337-bb2c-459b-8658-649116fda4f6,cnfg.KPI,6d2c2d36-5daa-48e2-86c1-ddaaef4862cc,en,
+208e12fc-4070-4f11-9646-790db7091f0f,cnfg.KPI,25cbd492-9f69-4a3d-a064-01ba63bbcb83,en,
+311f3f06-01c9-4e2f-ac68-6d9f739929b7,cnfg.KPI,16f52640-b533-4851-844a-cc1ef4a5206b,en,
+2c149b22-4742-4dcf-9fe8-9dfe5486b4ba,cnfg.KPI,13313bf6-ccb3-443a-8f8d-fa98b0a348e8,en,
+092ffbde-dbe5-4690-9770-5d6b3a203f22,cnfg.KPI,6ac89799-3f7c-4027-b71a-912c6dc798aa,en,
+f32c2efd-0570-46e4-b293-7bca65496efb,cnfg.KPI,e1c69120-aa1d-43c7-a101-ed981e27fa73,en,
+f686fdf4-31b6-4e6b-a409-76121fc2e6cb,cnfg.KPI,88eafbef-508d-473f-9b79-88a3155b3ff9,en,
+6d5e82e2-bf5b-4f34-9a8c-56045afd4cb2,cnfg.KPI,9f4e3bf2-5d19-459a-8f7e-bdef4307a771,en,
+c7048b74-d3e8-4beb-a2b8-490411ea13b6,cnfg.KPI,a4620180-c52d-41da-baf9-0c770a638da0,en,
+bb20df1f-8398-4dcc-ba19-b38a8f4ee2d3,cnfg.KPI,893c36fc-b5e0-45c5-b4c0-1c56309ad1ec,en,
+1867bc84-b08e-4835-a221-68863684433b,cnfg.KPI,cf9980bf-b56f-4b1e-8d03-3e6d253a52be,en,
+7eb818f2-a6bf-415f-a532-3a6d1a78bd99,cnfg.KPI,3acc0e80-058c-4029-b92f-f051c81353ce,en,
+222c836d-4b87-4120-9113-d7fe5ca9f909,cnfg.KPI,a3376192-e5a5-4bf9-8eee-745a1b1d267b,en,
+d3be96e3-68af-4f65-b509-ece9c7a94cd7,cnfg.KPI,676495b2-c283-4a51-8169-fa84e6474f46,en,"ROPI (price on shelf from SFA MM) plan
+"
+d4039f80-1f42-4d6b-9a90-a02490e4856a,cnfg.KPI,6a6221f2-c350-4178-929b-ad838667de34,en,Net Revenue plan
+0fa506bc-319f-4327-9bc4-1217935fc708,cnfg.KPI,8dfc3e94-ba11-46db-90d1-1ea3fb972d98,en,"Sales Margin plan
+"
+b97a91c7-3edb-48e0-9883-dc6c6925a84e,cnfg.KPI,65ae949d-1264-42dd-a4ec-f68f8eace7e0,en,Fixed Investment
+e1260230-1dbb-4482-a318-2277daeac856,cnfg.KPI,c55f7f77-eb98-4571-92d9-fa42b35341b9,en,Reach
+a48a5da2-896b-4212-9be0-fa809f1dec35,cnfg.KPI,e364fcdb-c3dd-41e5-9999-678371ea3315,en,
+054631f8-8842-4420-b5dc-a241f07f7eb7,cnfg.KPI,c0cec776-1d4f-4892-963d-2ced043c10f0,en,
+53d5706d-e7ad-48f3-9efc-b1247c8c62fa,cnfg.KPI,a1176b3e-dba4-466d-8b0e-7117ba6c8c11,en,
+75e4f7ee-c7b2-49ae-9a8f-9df8ec37153e,cnfg.KPI,8759c670-0030-4ff1-afcf-06975bbf4ac9,en,In/Out of Guideline
+0b4c646e-1129-46ac-b8d8-60b4ea6ab2a3,cnfg.KPI,efb94b12-b97b-4a50-a331-26a80b445535,en,In/Out of Guideline
+fed0d6ad-2f5a-497c-ba9a-48e9fba41296,cnfg.KPI,ac380a92-2587-456b-9300-ff5af7566e11,en,Planned # of Promo SKU
+9c94e68e-91f0-4284-a389-4580ed6dadad,cnfg.KPI,f3490581-61d6-4c6a-8a36-024a3bece1c4,en,
+9fa15ceb-6c0a-442a-b453-e9c0ce184978,cnfg.KPI,3c53b5d3-1ab5-4144-8e29-36197ef1fb71,en,
+8dd1b041-3dc2-4b1c-9d66-edf4da119e63,cnfg.KPI,9f12f35f-9830-4935-8af7-104b25587d03,en,ROPI (price on shelf from SFA MM) act
+6a5596b9-0817-408b-8d38-00d12a68534d,cnfg.KPI,c4e36867-68c0-43ef-9b6f-2d3c339fa08e,en,Main Forecast
+be190a1b-50aa-470c-ac58-c55ef3aff3e2,cnfg.KPI,40619500-6509-43cd-b33a-6cd0e9b5c785,en,
+59fb202d-903b-4fb0-a00f-caa902789239,cnfg.KPI,d9eea63b-5603-4e83-a2c7-f72e918b865e,en,Planned volume
+12666de8-230c-4772-b9a1-a8fc81271fb3,cnfg.KPI,bfb41446-91b3-45c0-839f-50c278b1ad45,en,Actual volume
+417fbf66-4e92-4ad2-a572-a776d65defa8,cnfg.KPI,c36f5330-3b79-4e1e-a85d-6b7a7a5bc3ec,en,Min_Budgeted_Promo_price_total
+84d65077-c58a-47ea-a9c9-42bf0cee8a74,cnfg.KPI,ae1bc6fc-b99a-4619-9d5e-4a7e3e53b595,en,Baseline VBB (tech)
+384a65ba-0e15-45e1-bba8-3d94ee1543ed,cnfg.KPI,90528ece-85a8-4b09-8f3e-a7f303957d85,en,Pre-promo volume
+f95d1aca-9042-4433-87a9-0ea3d47239ed,cnfg.KPI,8f18f1f0-e620-4a22-b58a-a4ee510240f5,en,After-promo volume
+23c61778-4263-487f-95d5-241655c2876b,cnfg.KPI,ff4ec5ee-2ca4-4f51-8201-50262301669f,en,
+18c5dc85-b309-4df3-b793-c8541f46d0f9,cnfg.KPI,722754d6-d4d1-4579-805a-152ecbba251d,en,
+ec3e8009-95a5-413a-91b5-7a3c97a23f28,cnfg.KPI,bfdb0ed0-268b-46aa-a8ad-67991c288793,en,
+6145d293-e6f8-4ee2-a817-d4b77137569e,cnfg.KPI,f98d2319-a179-4bad-ae0d-baa0075432b0,en,
+d73c47fa-29c7-4cc8-a854-aec7e58892d0,cnfg.KPI,18b090d5-9e86-4790-8dfd-ad99b563fa6b,en,Promo objem Calc - návrh (ks)
+e116d47a-8bf3-4c53-89c1-7c114c659f3a,cnfg.KPI,a000ff52-c6c6-435c-b0db-04280079bee8,en,
+20eddd5a-25d1-4967-ba5a-22f2042c9052,cnfg.KPI,d168682b-559a-4313-8848-23b34dfac62f,en,
+694e2a14-c28e-4674-9a94-9f317c9cd97d,cnfg.KPI,d962b723-d73e-4ec1-8aa7-22b27707c211,en,Manual Adjustment
+655884f5-4b02-4b75-b674-7b3a10a59a75,cnfg.KPI,100e8819-9668-4044-bacc-e2ae8744734d,en,
+e8b4af85-35b4-47f6-b067-56d4036934ee,cnfg.KPI,e8fd4c44-51d7-453e-9fc7-579640e8d8ce,en,
+e4385984-ee55-433b-aee2-abc85a08cac5,cnfg.KPI,fa76dbc8-85ab-47ff-874a-1b5242d7d5ff,en,Code
+5b691f7c-8909-4c29-ad2a-90fefecd3d2a,cnfg.KPI,7daf5436-18cb-47a4-8510-2b9eabd2b953,en,Code of material pricing Group
+33d411f4-1c89-4451-a972-04cf081b50f8,cnfg.KPI,9282333e-6e27-4d7e-aa12-16c352764a52,en,SelIn_read
+b8e3117b-4d7f-4543-97c9-d5b90ca9c501,cnfg.KPI,60fb6bdb-926d-4485-9447-27527a420ddc,en,
+2771ec70-7eb8-4803-a2b9-9e2199f231b3,cnfg.KPI,7ae4c513-8358-496b-944f-aa6d10d910c8,en,vbb
+3ad49427-a70a-4fdc-a6ef-84095f33fd83,cnfg.KPI,53cf61bd-48c8-4ade-b2eb-a5df8e35b183,en,
+7e84bb77-4af1-4c20-8428-92158897bf9e,cnfg.KPI,f294ed6c-5928-40a8-ad9d-d49d849592da,en,
+2d96cdb1-8049-4d57-b8c3-5382a487c5cd,cnfg.KPI,d06fb36d-522a-4bcf-b231-7a3cdef71366,en,Fixní investice v kč
+f0805a35-d0c8-4e83-813b-3cbd45b8439f,cnfg.KPI,491ab7fc-6794-480f-a18d-9a1f730b6e8f,en,"Baseline (automatically), 1000pcs"
+ab2f033b-3db2-4f69-be7b-368e8cc2ec37,cnfg.KPI,abc4773a-5d07-40b1-b3ac-b4d99f073bb7,en,Promo price proposal (manually) HU
+09134fa9-ad42-456b-9425-d2ffe4182758,cnfg.KPI,b697d4ca-bdef-42ca-ac77-9130c9f84ce9,en,Promo price with Health TAX
+b9fbe947-4f21-45f1-9da6-2febd55174fa,cnfg.KPI,f3e36af5-afb2-4278-acd5-44c00d319cc5,en,SelIn
+79926b04-4ef5-4490-accc-b447593fb563,cnfg.KPI,a82949ad-3124-4177-ab2f-5d0b88114357,en,Guideline KPI
+9f457b61-470d-4fad-87f6-5da097885000,cnfg.KPI,15d56b03-bb8d-424f-8956-17d21e953a30,en,
+e284b26e-87f5-43c9-8fe9-ddd244421e69,cnfg.KPI,d0e5efbb-e851-4456-89bd-7a8fb6df8bcd,en,
+3d1510cb-161d-43ca-96d5-5313d935d0a4,cnfg.KPI,126c290c-f2aa-4d3f-a77a-7f89dd0485fb,en,
+efe09656-021a-45eb-a6c7-0994fec60dc6,cnfg.KPI,dadb56b1-47d9-4115-a591-551461affb60,en,
+492f3a96-3d10-439f-a3f6-d30b31c8f99a,cnfg.KPI,4825a06c-9f2a-4c31-b221-72dcfc18dded,en,
+3155cbfe-4320-49ab-8359-83b984ac7fa8,cnfg.KPI,43ee17c3-56c6-4509-a2d4-b3de4d4cf833,en,
+2bdfda3a-868e-4529-8f64-179abdfc1da5,cnfg.KPI,0d0a32c8-3815-409f-989f-30dbfb90077c,en,
+4347081c-872c-4065-8227-e8c76e599b98,cnfg.KPI,c2620d76-5d46-4259-8256-7d07ecede44c,en,
+fd3017c3-9de1-45b9-a1e5-70849a2884c3,cnfg.KPI,1d42b329-0b98-4cab-8906-faac59012621,en,
+c2ced792-22d2-44be-928d-c044a2df4631,cnfg.KPI,43e71edb-0f49-413e-bce0-77f6a307840b,en,
+7da97a65-0eaf-48af-bddd-7f6ef9f0f178,cnfg.KPI,4ce869de-ccca-4eec-96e6-8725ce074c06,en,
+627a74cc-f25f-48de-8fd6-302cdc0b2add,cnfg.KPI,d0d4f40f-61f1-456b-9be0-03b2b08d3442,en,
+9255fc4b-20ca-4bca-a2eb-3d8d7e440388,cnfg.KPI,b45c13b3-41c1-4737-83c8-a9ba29a4d574,en,
+63633ea7-1f16-4644-870e-44d473717ac1,cnfg.KPI,4d11f32f-ea31-4b05-918a-4fafcbca9d8d,en,
+ff45fd75-3a53-4914-86e4-51372e5b7a42,cnfg.KPI,0a4fc7e8-dc10-4f28-b14f-5367f0133554,en,
+e3e6f89e-f613-4a32-b06a-448f2104db3c,cnfg.KPI,e8b48be5-eaaa-47e2-89ee-6e7ae2b0aea6,en,
+cea4b86d-132a-4f02-8786-5c202d7f03b6,cnfg.KPI,1a6a1bad-ab3b-44bc-83a3-9f3bf172f661,en,
+1a55bfa0-a922-4feb-a9fe-b038621706dc,cnfg.KPI,1447c10f-e2ba-4ddc-8aa0-ea23f33baaa2,en,
+18c48465-39b1-43e1-beca-0384de5533bd,cnfg.KPI,c2660364-49e9-4aab-a141-e1798d8e763c,en,
+61d53876-4d6f-4925-87c0-fb2d7028aea6,cnfg.KPI,0b5716e8-21ca-4039-aa59-aac9e211ae05,en,
+d25ccbbb-4d66-4bbf-a09d-e002097a8c43,cnfg.KPI,b7de5247-1f0b-4265-b48f-b4184a62cb92,en,
+83476ded-a150-4679-aa1d-a2ae5d9b24aa,cnfg.KPI,e3417346-6e71-4cfa-b95d-db1b23ff2be2,en,
+bedf317e-9999-4cec-b3a5-79bc64da2705,cnfg.KPI,e33d2d2a-b5be-4f2a-b61f-57e1abc7d300,en,
+3891ca60-5bd2-4fb8-9194-c02538f1ced6,cnfg.KPI,93c43aeb-867b-48f2-8e0a-0c3c17fbf0fa,en,
+efde026f-f945-48a0-af21-87fabb2a4c27,cnfg.KPI,80fdd0c8-cd25-4694-af2d-b7efbde7029c,en,
+cf3faaed-7762-4421-a419-a20554fe6f79,cnfg.KPI,c4e316f2-737d-4fc7-a155-e1792ec32218,en,
+1d268d96-9e24-47f5-a224-5c4b066d0fcb,cnfg.KPI,4a9522a7-0082-4bbc-867e-6c605024af92,en,
+400bcba7-866d-47a7-8efd-3890f1bff128,cnfg.KPI,a2c2bb8f-7aaa-4987-8876-ba7011b2dc61,en,
+d22332e7-0be6-4b89-bbc7-d2e98ebfa19b,cnfg.KPI,8ffb345d-53f3-4fee-9020-1602a168d33c,en,
+e0e30599-4ce4-4264-9f7c-1ae07062d4ac,cnfg.KPI,717818f5-d64f-4ed7-9d3e-2716fc96e277,en,
+6533df66-bc89-495f-a4ad-0e0342b43ae3,cnfg.KPI,612cb247-6cb9-48c7-97d1-9d761e77be8b,en,
+590d04eb-7df9-4450-b227-e53e0071ea77,cnfg.KPI,ef24632d-b51e-446f-9222-8a8e7f2d04c3,en,
+3b4064c8-8c48-4512-b832-b334fdda90a6,cnfg.KPI,b9f986d9-d4d2-49b7-84e6-dedeaeec8545,en,Promo Type GuideKPI
+5cfaf0a6-d999-43e1-a13a-2724faf7124f,cnfg.KPI,e995a3ea-0ea9-46de-9bc0-c09a10f23751,en,"Combination to avoid, In/Out of Guideline"
+7728a766-c130-426a-b9c7-af9bc539fa1f,cnfg.KPI,8b977a54-806e-4179-8e4e-a9e804538c18,en,
+eb8e401b-1dfa-4b9a-af3d-09627a243499,cnfg.KPI,7550f4e0-eb14-4e19-8330-e9379733313e,en,
+c7771410-d48e-44d9-a386-6f635c092a68,cnfg.KPI,7983cf55-158d-4a0e-9ac0-2ced594a5c8f,en,
+567941e0-e7f7-4c16-b57c-1870fb9bd699,cnfg.KPI,ca40e0a0-9e06-436b-9992-0baaa778d9f3,en,"Combination to recommend, In/Out of Guideline"
+63d614c9-4d88-431e-ae63-2c39bccc7050,cnfg.KPI,84b835b0-8b35-46b1-bf6e-edbaddf08631,en,
+e90bba51-d397-4a2c-b655-fb6a2e06189b,cnfg.KPI,8f256c85-1a85-46cd-8307-080c59cad3f4,en,
+8fafc2b8-32db-42c2-8a30-ee0aa0ff58a6,cnfg.KPI,ec19abbe-3571-4308-ad84-1cd05a59ed16,en,
+4749118e-4a7d-406c-859d-6e8e907963a2,cnfg.KPI,9764bceb-8e51-41e2-a9fa-1f8f3653297c,en,
+7be95772-b901-4cad-99af-0a47a20220b9,cnfg.KPI,3cebe90d-6113-4d6d-83e6-32abbd567d45,en,
+d633173b-66f0-4196-8cec-b066d885692d,cnfg.KPI,07fe61c3-2579-4c84-82b5-d9d92fe7ccf9,en,
+a07dc2c5-5f25-45a7-89cc-c366c6f6c809,cnfg.KPI,208b6a13-d70a-4764-aac8-772a2470dc22,en,
+b3ea5522-d3db-49db-b3e7-1c9eb5ac4fc8,cnfg.KPI,588add38-617e-4324-8c2c-bd283c058b43,en,
+ec49fad9-af2d-46f1-979f-c65ab8655d9f,cnfg.KPI,d96ad067-bf8a-46ac-a2eb-65ad65d48aac,en,"Combination to recommend, Guideline"
+eea39924-5218-4417-bb35-e460d50b1017,cnfg.KPI,8be28b7e-0cef-4c84-8aa1-9a767d95a6cc,en,
+c8fde30e-7369-499a-bc4d-ad5f0a987bd3,cnfg.KPI,04624e9f-426b-4969-91c7-b6edd57eba30,en,
+ba05b5bb-60bf-4968-bfd4-73f26e2bc401,cnfg.KPI,1eeacde4-8f85-4062-b394-d5a78efcfc5c,en,
+323ba398-1188-485d-99b9-890015404ca8,cnfg.KPI,dae382bc-79f0-46c7-8f11-4a586ab10f0a,en,
+9d282967-cb39-4c2f-bac3-a2f8e4f98f15,cnfg.KPI,a374d13e-fa75-4049-bf40-f0c00926a868,en,
+4b1bb7d7-9f3d-479a-a48a-2ca7ba71bd02,cnfg.KPI,248e88cb-f99e-4ffc-9ffa-eaf80dd4e329,en,Planned # of Promo L9
+a9f9d178-af73-4948-a046-a7b853a09e12,cnfg.KPI,70a5a583-2f2e-462e-8bcb-6314306a4a19,en,Baseline
+db782aba-e1db-4e64-9535-f924dc6a6c5c,cnfg.KPI,b9c7eaf7-a9ce-4d9e-9b73-43cf23edc028,en,Incremental Promo Volume
+1ad4a24f-c3a9-4cdf-8738-9f33c5366455,cnfg.KPI,67109be2-dda8-4df6-8bff-fc576c6419ca,en,Promo_Volume_Past (tech)
+83793c8a-4083-40e1-bd44-4e8409e73d61,cnfg.KPI,510b67f3-9dbf-432a-80e9-6e3c296e935f,en,frcPromoVolumePast(tech)
+ebd64164-6c96-4bde-b3a8-001891f094eb,cnfg.KPI,a8058eed-4f11-4e7f-a813-9f7184116148,en,frcPromoVolumeShort(tech)
+78c1f832-a70d-43f7-b324-0be1a82b1886,cnfg.KPI,0f673ae7-31fb-49c7-ade3-2eaca5468ddf,en,frcGrothRate(del)
+a925bf8c-d295-438f-9800-fd047a3b0d50,cnfg.KPI,61647ec0-364c-4d66-9bd4-70398a7b395d,en,allRelevantGuides
+39d5c453-06e0-42b1-a041-b8d38e47270e,cnfg.KPI,1ca862eb-4ab1-49bd-97fe-9b15e4f9d1ae,en,Highlight for In/Out of Guidline
+23012cf3-9177-4444-9737-2fe9c0dfb357,cnfg.KPI,44664f1a-f8b6-40f7-a0eb-a4c9fd1e0457,en,"Combination to avoid, Guideline"
+97a1ffbb-f300-4663-bb7f-581ff6546730,cnfg.KPI,32cb9855-2ed4-4c75-9d07-cbdb3b23828c,en,
+c1d6b726-0099-49d7-856e-d56dfea96ef3,cnfg.KPI,4e33c67c-2672-40b9-854d-441f2b0ae5f4,en,
+09db122e-d478-4a23-9304-1d824546a12a,cnfg.KPI,8cdd99b8-6acc-4237-b707-ac58b31a6edd,en,"Promo Type Check, In/Out of Guideline"
+6ab9fe9a-7ad1-414b-9864-9d25d770f6d2,cnfg.KPI,5dcb5331-5bb3-409d-86eb-c3639b7911aa,en,Promotional Type Guideline
+ec0a7700-ca04-47dd-8bac-732a66241aea,cnfg.KPI,6e560050-41bb-4ed6-98ca-d989bb8421e6,en,
+188a6584-c794-4d32-9a01-3684cfef811c,cnfg.KPI,f4bff778-2e52-4a39-9c17-3eb70e8105cb,en,
+5f4555f3-1de8-43a9-b1cb-880894d5bfb1,cnfg.KPI,b74e39b5-263e-4dff-9073-ee74a9395497,en,"Most frequent Promo Price, In/Out of Guideline"
+a076808b-d804-4060-94f0-f96506918471,cnfg.KPI,9e21fe1a-4d87-49a6-a91a-e89ffe98934e,en,Unfolded Baseline (tech)
+32b95e39-2f58-4022-82a4-0255935d8f9d,cnfg.KPI,e1345602-d821-4a52-9193-3dfeecd956ec,en,Unfolded Baseline
+7a1c1cdf-23ae-406b-874f-1834a42d793b,cnfg.KPI,296ee2ff-d503-44bf-88aa-1f2bb7d579c5,en,SKU Share (tech)
+3f8b4377-0108-4393-a763-d518ce96afa8,cnfg.KPI,d80464cb-4a1c-48fb-9880-ab23bbb7f079,en,SKU historical data for L9 (tech)
+db3345a2-bcc5-431c-8fdd-6c5a609db349,cnfg.KPI,e9ae7c1e-347b-4291-b8a5-9a0ecde2ea91,en,Actual sales
+f209abfa-13a4-4088-8b0e-27d97ae6a3c4,cnfg.KPI,4f5f0a72-4185-4e5f-9374-f19f059c2962,en,
+8d126ea3-164b-43b9-82c6-127c87615b32,cnfg.KPI,43e94bab-459a-48b4-81b6-62946a60e354,en,
+c00b551a-6695-462d-a30d-68c644dc1dc2,cnfg.KPI,b867b5c4-7659-4af4-b2e8-aecb035b5ab2,en,
+0dcce9d9-8ae5-4e94-8d02-8dfa84225291,cnfg.KPI,85af2e91-fb7e-428f-9e77-b2a3a3a3facb,en,Baseline (automatically) / 1000ks
+7f7f336d-26cc-4e09-aadd-aeec34b9a996,cnfg.KPI,38c1a450-1c18-4d7f-95d2-a46c9544bb83,en,Promo objem - KAM (1000 ks)
+cd37f0c1-02c8-4adc-beef-c711380fefb0,cnfg.KPI,53ab9ca5-34da-49e6-9998-ba3c3e54ec67,en,
+d29795c7-f67d-4209-a9ec-1b52ed52e090,cnfg.KPI,47160d6a-218b-4449-8af3-91da435455c0,en,Baseline (automatically) (ks)
+7ae222c4-49e8-4bff-a99f-8185322823c5,cnfg.KPI,764ff6cc-decb-42c2-ab94-e650bba15416,en,
+b376230b-ce13-4abb-bd89-8cdab0120b99,cnfg.KPI,e0415bb7-bca1-48b0-898f-883aa9648eda,en,
+2ce3844f-cde4-4abb-a5e2-8c784aa16f10,cnfg.KPI,80f77dd0-8b9f-47be-9469-2e47fa9970b1,en,Promo_Volume_Short (tech)
+044e3899-280e-446d-8545-b7d7d2d398ee,cnfg.KPI,b482e25b-a47b-4cad-8e00-dafb295bb6bf,en,GrowthRate (tech)
+9feccd96-d7b8-485d-b109-23e01a96631b,cnfg.KPI,b095b056-37f0-45e4-82bc-2228eacb78f5,en,FiFOdaysFoActSales_SelIn (tech)
+3f724ca7-b5d1-4299-9f55-dc1d3f9a3747,cnfg.KPI,4b6e050e-25ce-44ba-8881-4b674f4651a8,en,FiFOdaysFoActSales_SelOut (tech)
+51141102-8df9-4759-be69-f3f83d4aeab8,cnfg.KPI,51fd25bf-d0ca-437d-bcc5-b596deb9c58d,en,Forward Buy
+4677ee26-8657-4c28-bde3-1106551ce15b,cnfg.KPI,7495b887-d611-4bf5-bd38-7015eaed3fbf,en,Actual # of Promo SKU
+acb9a459-d7e4-4d80-94b2-7b8e73ffd37c,cnfg.KPI,9e34452a-1db3-47cf-804e-514e84a170b8,en,
+d9dd87e4-178f-463c-a369-490389523310,cnfg.KPI,c767e784-fcab-4a79-be6e-6dd924f6df83,en,SKU penetration by Promotion (tech)
+80c931e8-f10a-4a05-81be-053c04312c80,cnfg.KPI,7c5be727-9d29-4509-92e5-edfbfd02e867,en,"Act Sales (tech, frcSKUSalesAsShare)"
