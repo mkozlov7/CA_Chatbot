@@ -7,6 +7,7 @@ __pycache__/
 
 # Environment variables
 .env
+.streamlit/secrets.toml
 
 # Log files
 logs/
